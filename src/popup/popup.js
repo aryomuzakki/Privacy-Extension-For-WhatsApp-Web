@@ -10,6 +10,9 @@ let name = document.getElementById('name');
 let noDelay = document.getElementById('noDelay');
 let unblurActive = document.getElementById('unblurActive');
 
+let blockWords = document.getElementById("blockWords");
+let wordsTextArea = document.getElementById("spoilerQuery");
+
 // Message functionality
 let mainContent = document.getElementById('mainContent');
 let popupMessage = document.getElementById('popupMessage');
@@ -38,7 +41,9 @@ chrome.storage.sync.get([
     'profilePic',
     'name',
     'noDelay',
-    'unblurActive'
+    'unblurActive',
+    'blockWords',
+    'spoilerQuery',
   ], function(data) {
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
       messages.checked=data.messages;
@@ -50,7 +55,9 @@ chrome.storage.sync.get([
       name.checked=data.name;
       noDelay.checked=data.noDelay;
       unblurActive.checked=data.unblurActive;
-      button.checked=data.on;
+      button.checked = data.on;
+      blockWords.checked = data.blockWords;
+      wordsTextArea.value = data.spoilerQuery.join("\n");
 
       //load message
       xmlhttp=new XMLHttpRequest();
@@ -84,6 +91,7 @@ chrome.storage.sync.get([
 button.addEventListener('change', function() {
   chrome.storage.sync.set({on: this.checked});
   refreshScript();
+  refreshSpoiler();
 });
 // Update settings values
 messages.addEventListener('change', function() {
@@ -122,3 +130,41 @@ unblurActive.addEventListener('change', function() {
   chrome.storage.sync.set({unblurActive: this.checked});
   refreshScript();
 });
+
+// spoiler / block words
+function refreshSpoiler({ data }) {
+  // chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+  //   chrome.tabs.sendMessage(tabs[0].id, { data }, function (response) {
+  //     console.log("response from sendMessage", response);
+  //   });
+  // });
+  chrome.tabs.query({ url: "https://web.whatsapp.com/" }, function (tabs) {
+    if (tabs.length !== 0)
+      tabs.forEach(function(tab){chrome.tabs.executeScript(tab.id, {file: '/spoiler.js'})});
+  });
+}
+
+let updateBlockedWord = document.getElementById("block-word-btn");
+
+// wordsTextArea.addEventListener("keyup", (ev) => {
+//   let blockWordList = document.getElementsByClassName("block-word-list")[0];
+//   blockWordList.innerHTML = "";
+//   ev.target.value.split("\n").forEach(el => {
+//     if (el.trim().length > 0) {
+//       let liEl = document.createElement("li");
+//       liEl.innerText = el;
+//       blockWordList.appendChild(liEl);
+//     }
+//   })
+// })
+
+updateBlockedWord.addEventListener("click", () => {
+  const spoilerQuery = wordsTextArea.value.split("\n").filter(val => val).map(val => val.trim())
+  chrome.storage.sync.set({ spoilerQuery });
+  refreshSpoiler({ data: { event: "refresh", spoilerQuery } });
+})
+
+blockWords.addEventListener("click", function () {
+  chrome.storage.sync.set({ blockWords: this.checked });
+  refreshSpoiler({ data: { event: "refresh" } });
+})

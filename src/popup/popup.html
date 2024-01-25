@@ -114,7 +114,7 @@
     </head>
     <body>
       <img src="../images/icon32.png" alt="">
-      <h1>Privacy Extension<br>For WhatsApp Web</h1>
+      <h1>dev Privacy Extension<br>For WhatsApp Web</h1>
       <hr>
       <span id="mainContent">
         <h2 style="margin-bottom: 10px;">Toggle</h2><input type="checkbox" id="switch" /><label for="switch">Toggle</label><br>
@@ -128,6 +128,17 @@
         <p>Group/Users names<input type="checkbox" id="name"><label for="name" title="Blurs all group and usernames."> Group/Users names</label></p>
         <p>No transition delay<input type="checkbox" id="noDelay"><label for="noDelay" title="Allows you to turn off the delay before revealing an item on hover."> No transition delay</label></p>
         <p>Unblur all on app hover<input type="checkbox" id="unblurActive"><label for="unblurActive" title="Unblurs all when you hover over the WhatsApp Web app."> Unblur all on app hover</label></p>
+        <p>Block words<input type="checkbox" id="blockWords"><label for="blockWords" title="Block words of your choice"> Block words of your choice</label></p>
+        <div>
+          <p>Type a Word to Block, then click Update Words
+            <br />Separate by newline for multiple words
+          </p>
+          <div>
+            <textarea id="spoilerQuery"></textarea>
+            <button type="button" id="block-word-btn">Update Words</button>
+          </div>
+          <!-- <ul class="block-word-list"></ul> -->
+        </div>
       </span>
       <span id="popupMessage"></span>
       <div id="footer">

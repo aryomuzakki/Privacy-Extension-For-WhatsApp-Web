@@ -11,7 +11,9 @@ chrome.runtime.onInstalled.addListener(function(details) {
       'profilePic',
       'name',
       'noDelay',
-      'unblurActive'
+      'unblurActive',
+      'blockWords',
+      'spoilerQuery',
     ], function(data) {
       data.on == null && chrome.storage.sync.set({on: true});
       data.currentPopupMessage == null && chrome.storage.sync.set({currentPopupMessage: ""});
@@ -24,6 +26,8 @@ chrome.runtime.onInstalled.addListener(function(details) {
       data.name == null && chrome.storage.sync.set({name: false});
       data.noDelay == null && chrome.storage.sync.set({noDelay: false});
       data.unblurActive == null && chrome.storage.sync.set({unblurActive: false});
+      data.blockWords == null && chrome.storage.sync.set({blockWords: false});
+      data.spoilerQuery == null && chrome.storage.sync.set({spoilerQuery: ""});
   });
 });
 
@@ -33,8 +37,10 @@ chrome.commands.onCommand.addListener(function(command) {
       chrome.storage.sync.set({on: !data.on});
 
       chrome.tabs.query({url: "https://web.whatsapp.com/"}, function(tabs) {
-        if (tabs.length !== 0)
+        if (tabs.length !== 0) {
           tabs.forEach(function(tab){chrome.tabs.executeScript(tab.id, {file: '/load.js'})});
+          tabs.forEach(function(tab){chrome.tabs.executeScript(tab.id, {file: '/spoiler.js'})});
+        }
       });
     });
   }
