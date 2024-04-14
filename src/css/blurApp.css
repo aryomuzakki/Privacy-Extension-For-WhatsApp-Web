@@ -1,0 +1,11 @@
+#whatsapp-web body
+{
+  filter: blur(8px) grayscale(1) !important;
+  transition-delay: 0s !important;
+}
+
+#whatsapp-web body:hover
+{
+  filter: blur(0) grayscale(0) !important;
+  transition-delay: 0.3s !important;
+}

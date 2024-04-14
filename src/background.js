@@ -23,7 +23,8 @@ const defaultSettings = {
       noDelay: false,
       profilePic: false,
       textInput: true,
-      unblurActive: false
+      unblurActive: false,
+      blurApp: false
     }
   }
 };

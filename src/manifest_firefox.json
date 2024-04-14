@@ -50,7 +50,8 @@
         "css/profilePic.css",
         "css/name.css",
         "css/noDelay.css",
-        "css/unblurActive.css"
+        "css/unblurActive.css",
+        "css/blurApp.css"
       ],
       "matches": ["https://web.whatsapp.com/*"]
     }
