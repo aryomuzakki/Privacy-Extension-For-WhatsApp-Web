@@ -122,6 +122,8 @@ body:hover div.x10l6tqk.x13vifvy.x17qophe.xh8yej3.xiqx3za.x6ikm8r.x10wlt62.x1knu
 body:hover div.x15e7hw7 /* business profile banner in catalog list */,
 body:hover div._amje /* group profile pic in details panel */,
 body:hover div.overlay ._am0k /* user/group profile pic overlay view */,
+body:hover div[role="listbox"] > div > div > button:first-child > div > div > div:first-child > div /* user profile pic in settings */,
+body:hover div._aohe ._ajv7._ajvb ._aohi > div /* user profile pic in left corner */,
 body:hover div.x1okw0bk.x1w0mnb /* user profile pic in starred message list */
 {
   filter: blur(0) grayscale(0);

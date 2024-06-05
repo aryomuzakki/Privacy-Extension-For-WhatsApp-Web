@@ -21,7 +21,8 @@ div._amk4 > div[role="button"] /* user profile pic in group chat messages */,
 div._ahz2 /* user profile pic in contact attachment */,
 div.x2lah0s.x1c4vz4f.xdl72j9.x194xeti /* user profile pic in multiple contact attachment */,
 div._ak4m /* user profile pic in voice note chat */,
-div.overlay ._ak8h /* user profile pic in overlay media view */
+div.overlay ._ak8h /* user profile pic in overlay media view */,
+div._aohe ._ajv7._ajvb ._aohi > div /* user profile pic in left corner */
 {
   filter: blur(var(--pp-blur)) grayscale(1);
   transition-delay: 0s;
@@ -36,7 +37,8 @@ div[role="button"][class="x1n2onr6 x14yjl9h xudhj91 x18nykt9 xww2gxu"] /* busine
 div.x10l6tqk.x13vifvy.x17qophe.xh8yej3.xiqx3za.x6ikm8r.x10wlt62.x1knukwh.xihgre1 /* business profile banner in details panel */,
 div.x15e7hw7 /* business profile banner in catalog list */,
 div._amje /* group profile pic in details panel */,
-div.overlay ._am0k /* user/group profile pic overlay view */
+div.overlay ._am0k /* user/group profile pic overlay view */,
+div[role="listbox"] > div > div > button:first-child > div > div > div:first-child > div /* user profile pic in settings */
 {
   filter: blur(var(--pp-lg-blur)) grayscale(1);
   transition-delay: 0s;
@@ -80,6 +82,8 @@ div.x10l6tqk.x13vifvy.x17qophe.xh8yej3.xiqx3za.x6ikm8r.x10wlt62.x1knukwh.xihgre1
 div.x15e7hw7:hover /* business profile banner in catalog list */,
 div._amje:hover /* group profile pic in details panel */,
 div.overlay ._am0k:hover /* user/group profile pic overlay view */,
+div[role="listbox"] > div > div > button:first-child > div > div > div:first-child > div:hover /* user profile pic in settings */,
+div._aohe ._ajv7._ajvb ._aohi > div:hover /* user profile pic in left corner */,
 div.x1okw0bk.x1w0mnb:hover /* user profile pic in starred message list */
 {
   filter: blur(0) grayscale(0);

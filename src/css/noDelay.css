@@ -125,6 +125,8 @@ div.x10l6tqk.x13vifvy.x17qophe.xh8yej3.xiqx3za.x6ikm8r.x10wlt62.x1knukwh.xihgre1
 div.x15e7hw7:hover /* business profile banner in catalog list */,
 div._amje:hover /* group profile pic in details panel */,
 div.overlay ._am0k:hover /* user/group profile pic overlay view */,
+div[role="listbox"] > div > div > button:first-child > div > div > div:first-child > div:hover /* user profile pic in settings */,
+div._aohe ._ajv7._ajvb ._aohi > div:hover /* user profile pic in left corner */,
 div.x1okw0bk.x1w0mnb:hover /* user profile pic in starred message list */,
 
 /* textInput */
