@@ -7,6 +7,30 @@
     <head>
       <meta charset="UTF-8">
       <style>
+        :root {
+          --bg-color: #ffffff;
+          --bg-color-toggle-disable: #cacaca;
+          --bg-color-submit-btn: #eeeeee;
+          --bg-color-submit-btn-hover: #cccccc;
+          --border-color-blur-input: #aaaaaa;
+          --border-line-color: #dedede;
+          --text-color: #000000;
+          --text-color-unit: #666666;
+          --text-color-reset: #ff0000;
+          --text-color-link: #00587f;
+        }
+        body[data-theme="dark"] {
+          --bg-color: #434343;
+          --bg-color-toggle-disable: #787878;
+          --bg-color-submit-btn: #555555;
+          --bg-color-submit-btn-hover: #666666;
+          --border-color-blur-input: #999999;
+          --border-line-color: #888888;
+          --text-color: #dedede;
+          --text-color-unit: #cccccc;
+          --text-color-reset: #ff7676;
+          --text-color-link: #70c0ff;
+        }
         *{
           margin: 0;
           padding: 0;
@@ -14,24 +38,69 @@
         body{
           font-family: Arial, sans-serif;
           font-size: 75%;
+          color: var(--text-color);
+          background-color: var(--bg-color);
           width: 210px;
           padding: 10px;
           -moz-user-select: none;
           user-select: none;
         }
         hr{
-          border: 0.5px solid #dedede;
+          border: 0.5px solid var(--border-line-color);
           margin: 10px 0;
         }
+        header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
         img{
-          float: left;
-          margin-left: 10px;
-          margin-right: 15px;
+          margin-left: 5px;
         }
         h1{
           font-size: larger;
           margin-bottom: 5px;
           display: block;
+        }
+        .theme-toggle {
+          position: relative;
+          width: 20px;
+          height: 20px;
+          margin-bottom: 10px;
+          color: #25d366;
+          border: 1px solid #25d366;
+          border-radius: 20px;
+          padding: 2px;
+          background-color: transparent;
+          overflow: hidden;
+          transition: .3s;
+        }
+        .theme-toggle:hover {
+          background-color: #25d366;
+          color: #ffffff;
+          border-radius: 4px;
+          transform: rotate(360deg);
+        }
+        .theme-toggle svg{
+          position: absolute;
+          inset: 0;
+          margin: auto;
+          opacity: 0;
+          width: 14px;
+          max-height: 100%;
+          transition: .3s;
+        }
+        .theme-toggle[data-theme="dark"] svg.dark {
+          position: relative;
+          opacity: 1;
+        }
+        .theme-toggle[data-theme="light"] svg.light {
+          position: relative;
+          opacity: 1;
+        }
+        .theme-toggle[data-theme="system-default"] svg.system-default {
+          position: relative;
+          opacity: 1;
         }
         h2{
           font-size: small;
@@ -45,7 +114,7 @@
           font-size: small;
           padding: 10px 5px 0;
           margin-bottom: 10px;
-          border-top: 1px solid #dedede;
+          border-top: 1px solid var(--border-line-color);
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -62,7 +131,7 @@
           margin-bottom: 15px;
         }
         a{
-          color: #00587f;
+          color: var(--text-color-link);
           text-decoration: none;
         }
         a:hover{
@@ -93,7 +162,7 @@
           border: 1px solid #25d366;
           border-radius: 24px;
           color: #25d366;
-          background-color: #ffffff;
+          background-color: var(--bg-color);
           transition: .3s;
           cursor: pointer;
         }
@@ -104,7 +173,7 @@
           transform: rotate(360deg);
         }
         .reveal-btn:active, .reveal-btn.active:active {
-          background-color: #ffffffbf;
+          background-color: var(--bg-color);
           color: #25d366bf;
         }
         .reveal-btn.active {
@@ -126,7 +195,7 @@
           text-indent: -9999px;
           width: 40px;
           height: 20px;
-          background: #cacaca;
+          background: var(--bg-color-toggle-disable);
           display: block;
           border-radius: 100px;
           position: relative;
@@ -182,14 +251,14 @@
           justify-content: space-between;
           padding: 8px;
           font-size: 11px;
-          background-color: #ffffff;
+          background-color: var(--bg-color);
           width: 100%;
           height: 100%;
         }
         .var-style button[type="reset"] {
           width: 14%;
-          color: #ff0000;
-          background-color: #ffffff;
+          color: var(--text-color-reset);
+          background-color: var(--bg-color);
           border: none;
           margin: 0 4px;
           height: 100%;
@@ -216,7 +285,9 @@
           font-size: 11px;
           text-align: right;
           outline: none;
-          border: 1px solid #aaaaaa;
+          color: var(--text-color);
+          background-color: var(--bg-color);
+          border: 1px solid var(--border-color-blur-input);
           border-top-left-radius: 4px;
           border-bottom-left-radius: 4px;
           border-right: none;
@@ -235,10 +306,10 @@
           height: 25px;
           text-align: center;
           line-height: 23px;
-          color: #888888;
-          background-color: #dddddd;
-          border-top: 1px solid #aaaaaa;
-          border-bottom: 1px solid #aaaaaa;
+          color: var(--text-color-unit);
+          background-color: var(--bg-color-submit-btn-hover);
+          border-top: 1px solid var(--border-color-blur-input);
+          border-bottom: 1px solid var(--border-color-blur-input);
         }
         .var-style button[type="submit"] {
           width: 25px;
@@ -248,24 +319,48 @@
           text-align: center;
           line-height: 23px;
           outline: none;
-          border: 1px solid #aaaaaa;
+          border: 1px solid var(--border-color-blur-input);
           border-top-right-radius: 4px;
           border-bottom-right-radius: 4px;
-          background-color: #eeeeee;
+          background-color: var(--bg-color-submit-btn);
+          color: var(--text-color);
           transition: .3s;
           cursor: pointer;
         }
         .var-style button[type="submit"]:hover {
-          background-color: #dddddd;
+          background-color: var(--bg-color-submit-btn-hover);
         }
         .var-style button[type="submit"]:active {
-          background-color: #cccccc;
+          background-color: var(--bg-color-submit-btn);
         }
       </style>
     </head>
     <body>
-      <img src="../images/icon32.png" alt="">
-      <h1>Privacy Extension<br>For WhatsApp Web</h1>
+      <header>
+        <img src="../images/icon32.png" alt="">
+        <h1>Privacy Extension<br>For WhatsApp Web</h1>
+        <button class="theme-toggle">
+          <!-- tabler:sun -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="light" data-localetitle="light" width="24" height="24" viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7l-.7.7m0 11.4l.7.7m-12.1-.7l-.7.7" />
+          </svg>
+          <!-- tabler:moon -->
+          <!-- <svg xmlns="http://www.w3.org/2000/svg" class="dark" data-localetitle="dark" width="24" height="24" viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z" />
+          </svg> -->
+          <!-- tabler:moon-stars -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="dark" data-localetitle="dark" width="24" height="24" viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992zm5 1a2 2 0 0 0 2 2a2 2 0 0 0-2 2a2 2 0 0 0-2-2a2 2 0 0 0 2-2m2 7h2m-1-1v2" />
+          </svg>
+          <!-- tabler:sun-moon -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="system-default" data-localetitle="system-default" width="24" height="24" viewBox="0 0 24 24">
+            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+              <path d="M9.173 14.83a4 4 0 1 1 5.657-5.657" />
+              <path d="m11.294 12.707l.174.247a7.5 7.5 0 0 0 8.845 2.492A9 9 0 0 1 5.642 18.36M3 12h1m8-9v1M5.6 5.6l.7.7M3 21L21 3" />
+            </g>
+          </svg>
+        </button>
+      </header>
       <hr>
       <div id="mainContent">
         <h2 style="margin-bottom: 10px;">

@@ -91,6 +91,66 @@ browser.storage.sync.get([settingsIdentifier]).then((result) => {
   
 });
 
+// theme detector and changer
+
+// listener and first check
+const setCurrentTheme = (ev) => {
+  const theme = ev?.matches ? "dark" : "light";
+  document.body.dataset.theme = theme;
+  return theme;
+}
+
+const themeTogglerBtn = document.querySelector(".theme-toggle");
+
+// theme toggle
+const toggleCurrentTheme = (ev) => {
+  ev.preventDefault();
+  const curTheme = localStorage.getItem("theme");
+  if (curTheme === "light") {
+
+    setCurrentTheme({ matches: true });
+    themeTogglerBtn.dataset.theme = "dark";
+    localStorage.setItem("theme", "dark");
+
+  } else if (curTheme === "dark") {
+
+    setCurrentTheme(matchMedia("(prefers-color-scheme: dark)"));
+    themeTogglerBtn.dataset.theme = "system-default";
+    localStorage.setItem("theme", "system-default");
+    matchMedia("(prefers-color-scheme: dark)").addEventListener("change", setCurrentTheme);
+
+  } else if (curTheme === "system-default") {
+
+    matchMedia("(prefers-color-scheme: dark)").removeEventListener("change", setCurrentTheme);
+    setCurrentTheme({ matches: false });
+    themeTogglerBtn.dataset.theme = "light";
+    localStorage.setItem("theme", "light");
+
+  }
+}
+
+themeTogglerBtn.addEventListener("click", toggleCurrentTheme);
+
+// first load check
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme) {
+
+  themeTogglerBtn.dataset.theme = savedTheme;
+ 
+  if (savedTheme === "system-default") {
+    setCurrentTheme(matchMedia("(prefers-color-scheme: dark)"));
+    matchMedia("(prefers-color-scheme: dark)").addEventListener("change", setCurrentTheme);
+  } else {
+    setCurrentTheme({ matches: savedTheme === "dark" });
+  }
+
+} else {
+ 
+  const curTheme = setCurrentTheme(matchMedia("(prefers-color-scheme: dark)"));
+  localStorage.setItem("theme", curTheme);
+  themeTogglerBtn.dataset.theme = curTheme;
+  
+}
 
 /*
 // legacy code, keeping it for future reference
