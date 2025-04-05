@@ -49,8 +49,20 @@ function saveSettings() {
 
 // toggle open/close blur amount settings
 const showBlurSettings = (ev) => {
-  ev.currentTarget.classList.toggle("active");
-  ev.currentTarget.parentNode.querySelector(".collapsible").classList.toggle("show");
+  // if current target is currently active button, only close currently active collapsible
+  if (ev.currentTarget.classList.contains("active")) {
+    ev.currentTarget.classList.remove("active");
+    ev.currentTarget.parentNode.querySelector(".collapsible").classList.remove("show");
+  } else {
+    console.log("not contains active");
+    // close other
+    ev.currentTarget.parentNode.parentNode.querySelector(".reveal-btn.active")?.classList.remove("active");
+    ev.currentTarget.parentNode.parentNode.querySelector(".collapsible.show")?.classList.remove("show");
+
+    // and open collapsible in current target 
+    ev.currentTarget.classList.add("active");
+    ev.currentTarget.parentNode.querySelector(".collapsible").classList.add("show");
+  }
 }
 const revealButtons = document.querySelectorAll(".reveal-btn");
 revealButtons.forEach((revealBtn) => {
@@ -109,5 +121,98 @@ browser.storage.sync.get([settingsIdentifier]).then((result) => {
       numInput.value = parseInt(result.settings.varStyles[varName]);
     }
   })
-  
+
 });
+
+// theme detector and changer
+
+// listener and first check
+const setCurrentTheme = (ev) => {
+  const theme = ev?.matches ? "dark" : "light";
+  document.body.dataset.theme = theme;
+  return theme;
+}
+
+const themeTogglerBtn = document.querySelector(".theme-toggle");
+
+// theme toggle
+const toggleCurrentTheme = (ev) => {
+  ev.preventDefault();
+  const curTheme = localStorage.getItem("theme");
+  if (curTheme === "light") {
+
+    setCurrentTheme({ matches: true });
+    themeTogglerBtn.dataset.theme = "dark";
+    localStorage.setItem("theme", "dark");
+
+  } else if (curTheme === "dark") {
+
+    setCurrentTheme(matchMedia("(prefers-color-scheme: dark)"));
+    themeTogglerBtn.dataset.theme = "system-default";
+    localStorage.setItem("theme", "system-default");
+    matchMedia("(prefers-color-scheme: dark)").addEventListener("change", setCurrentTheme);
+
+  } else if (curTheme === "system-default") {
+
+    matchMedia("(prefers-color-scheme: dark)").removeEventListener("change", setCurrentTheme);
+    setCurrentTheme({ matches: false });
+    themeTogglerBtn.dataset.theme = "light";
+    localStorage.setItem("theme", "light");
+
+  }
+}
+
+themeTogglerBtn.addEventListener("click", toggleCurrentTheme);
+
+// first load check
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme) {
+
+  themeTogglerBtn.dataset.theme = savedTheme;
+
+  if (savedTheme === "system-default") {
+    setCurrentTheme(matchMedia("(prefers-color-scheme: dark)"));
+    matchMedia("(prefers-color-scheme: dark)").addEventListener("change", setCurrentTheme);
+  } else {
+    setCurrentTheme({ matches: savedTheme === "dark" });
+  }
+
+} else {
+
+  const curTheme = setCurrentTheme(matchMedia("(prefers-color-scheme: dark)"));
+  localStorage.setItem("theme", curTheme);
+  themeTogglerBtn.dataset.theme = curTheme;
+
+}
+
+/*
+// legacy code, keeping it for future reference
+// message loading not implemented currently
+
+//load message
+xmlhttp=new XMLHttpRequest();
+xmlhttp.onreadystatechange=function(){
+  if (xmlhttp.readyState==4 && xmlhttp.status==200){
+    let response = JSON.parse(xmlhttp.responseText);
+    if(response["*"] && response["*"]["min"] <= version && response["*"]["max"] >= version)
+      response = response["*"]["msg"];
+    else
+      response = response[version] ? response[version] : '';
+
+    if(response != "" && data.currentPopupMessage != response){
+      mainContent.style.display = "none";
+      popupMessage.innerText = response;
+      popupMessage.innerHTML += "<br><a href=\"#\" id=\"popupMessageButton\">Close message</a>";
+
+      let popupMessageButton = document.getElementById('popupMessageButton');
+      popupMessageButton.addEventListener('click', function() {
+        chrome.storage.sync.set({currentPopupMessage: response});
+        popupMessage.innerHTML = "";
+        mainContent.style.display = "initial";
+      });
+    }
+  }
+}
+xmlhttp.open("GET", "https://lukaslen.com/message/pfwa.json", true);
+xmlhttp.send();
+*/
