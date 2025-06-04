@@ -21,6 +21,35 @@ document.querySelectorAll('[data-localetitle]').forEach(e => {
   e.title = browser.i18n.getMessage(e.dataset.localetitle);
 });
 
+const showToast = (message, duration = 3000, persistent = false) => {
+  const container = document.getElementById('toast-container');
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = `
+      <p class="msg">${message}</p>
+      ${persistent ? `<button class="toast-close-btn">×</button>` : ""}
+    `;
+  container.appendChild(toast);
+
+  const removeToast = (toast) => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 300);
+  }
+
+  setTimeout(() => toast.classList.add('show'), 10);
+
+  if (!persistent) {
+    setTimeout(() => {
+      removeToast(toast);
+    }, duration < 0 ? 3000 : duration);
+  } else {
+    toast.querySelector(".toast-close-btn").addEventListener("click", () => {
+      removeToast(toast);
+    })
+  }
+}
+
+
 let switches = document.querySelectorAll("input[type='checkbox']");
 
 // Track switch changes and save settings
@@ -69,6 +98,33 @@ revealButtons.forEach((revealBtn) => {
   revealBtn.addEventListener("click", showBlurSettings)
 })
 
+const cancelButtons = document.querySelectorAll(".cancel-btn");
+cancelButtons.forEach((cancelBtn) => {
+  cancelBtn.addEventListener("click", (ev) => {
+    const collapsibleElement = ev.currentTarget.parentNode;
+
+    browser.storage.sync.get([settingsIdentifier]).then((result) => {
+      if (!result.hasOwnProperty(settingsIdentifier)) {
+        browser.runtime.reload();
+        return;
+      }
+      // reset input value to current used value
+      const numInputs = collapsibleElement.querySelectorAll('input')
+      numInputs.forEach(numInput => {
+        const varName = numInput.dataset.varName;
+        if (varName === "itBlur") {
+          numInput.value = parseInt(result.settings?.blurOnIdle?.idleTimeout || 15);
+        } else {
+          numInput.value = parseInt(result.settings.varStyles[varName]);
+        }
+      })
+    });
+
+    collapsibleElement.classList.remove("show");
+    ev.currentTarget.parentNode.parentNode.querySelector(".reveal-btn.active").classList.remove("active");
+  })
+})
+
 // track form save/submit for variable style settings
 const forms = document.querySelectorAll("form.var-style");
 
@@ -91,6 +147,7 @@ function saveFormSettings(ev) {
     }
     browser.storage.sync.set(result);
   });
+  showToast('Saved!');
 }
 
 // Load settings and update switches

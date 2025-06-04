@@ -74,6 +74,9 @@
     "toggleBlurOnIdleDescription": {
         "message": "Verstecke WhatsApp nach einer gewissen Zeit, sobald keine Maus/Tastatur Eingabe erkannt wird."
     },
+    "cancel": {
+        "message": "Cancel"
+    },
     "resetValue": {
         "message": "Zurücksetzen"
     },

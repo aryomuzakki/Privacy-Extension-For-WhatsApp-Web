@@ -74,6 +74,9 @@
     "toggleBlurOnIdleDescription": {
         "message": "Desfoca o WhatsApp quando não há atividade de mouse/teclado após um certo tempo."
     },
+    "cancel": {
+        "message": "Cancel"
+    },
     "resetValue": {
         "message": "Redefinir Valor para Padrão"
     },

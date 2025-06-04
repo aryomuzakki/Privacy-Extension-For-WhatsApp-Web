@@ -74,6 +74,9 @@
     "toggleBlurOnIdleDescription": {
         "message": "Blur WhatsApp when there is no mouse/keyboard activity after a certain time."
     },
+    "cancel": {
+        "message": "Cancel"
+    },
     "resetValue": {
         "message": "Reset Value to Default"
     },
