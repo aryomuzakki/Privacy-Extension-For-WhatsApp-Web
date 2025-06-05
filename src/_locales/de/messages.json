@@ -74,6 +74,21 @@
     "toggleBlurOnIdleDescription": {
         "message": "Verstecke WhatsApp nach einer gewissen Zeit, sobald keine Maus/Tastatur Eingabe erkannt wird."
     },
+    "toggleDarkMode": {
+        "message": "Toggle Dark Mode"
+    },
+    "light": {
+        "message": "Using Light Mode"
+    },
+    "dark": {
+        "message": "Using Dark Mode"
+    },
+    "system-default": {
+        "message": "Using System Default Preferences"
+    },
+    "openAdvancedSettings": {
+        "message": "Open Advanced Settings"
+    },
     "cancel": {
         "message": "Cancel"
     },
