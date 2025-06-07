@@ -75,22 +75,13 @@
         "message": "Desfoca o WhatsApp quando não há atividade de mouse/teclado após um certo tempo."
     },
     "toggleDarkMode": {
-        "message": "Toggle Dark Mode"
-    },
-    "light": {
-        "message": "Using Light Mode"
-    },
-    "dark": {
-        "message": "Using Dark Mode"
-    },
-    "system-default": {
-        "message": "Using System Default Preferences"
+        "message": "Modo Escuro"
     },
     "openAdvancedSettings": {
-        "message": "Open Advanced Settings"
+        "message": "Abrir configurações avançadas"
     },
     "cancel": {
-        "message": "Cancel"
+        "message": "Cancelar"
     },
     "resetValue": {
         "message": "Redefinir Valor para Padrão"

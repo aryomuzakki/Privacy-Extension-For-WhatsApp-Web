@@ -65,12 +65,12 @@
         }
         .theme-toggle {
           position: relative;
-          width: 20px;
-          height: 20px;
-          margin-bottom: 10px;
+          width: 30px;
+          height: 30px;
+          margin-bottom: 0;
           color: #25d366;
           border: 1px solid #25d366;
-          border-radius: 20px;
+          border-radius: 30px;
           padding: 2px;
           background-color: transparent;
           overflow: hidden;
@@ -87,7 +87,7 @@
           inset: 0;
           margin: auto;
           opacity: 0;
-          width: 14px;
+          width: 18px;
           max-height: 100%;
           transition: .3s;
         }
@@ -118,15 +118,41 @@
         #mainContent {
           margin: 10px 0;
         }
-        #mainContent > ul {
+        #mainContent > .scroll-wrapper {
+          position: relative;
+        }
+        #mainContent > .scroll-wrapper > ul {
           overflow: auto;
-          max-height: 68vh;
+          max-height: 380px;
           padding-right: 8px;
           scrollbar-width: thin;
           scrollbar-gutter: stable;
-          scrollbar-color: #25d366 var(--bg-color-submit-btn);
+          scrollbar-color: #25d366 var(--bg-color-toggle-disable);
         }
-        #mainContent > ul > li{
+        #mainContent > .scroll-wrapper > .top-edge,
+        #mainContent > .scroll-wrapper > .bottom-edge {
+          position: absolute;
+          pointer-events: none;
+          background: linear-gradient(var(--degree), var(--bg-color), transparent);
+          width: 100%;
+          z-index: 2;
+          height: 20px;
+        }
+        #mainContent > .scroll-wrapper > .top-edge {
+          --degree: 180deg;
+          top: 0;
+        }
+        #mainContent > .scroll-wrapper > .bottom-edge {
+          --degree: 0deg;
+          bottom: 0;
+        }
+        #mainContent > .scroll-wrapper > ul > li:first-child{
+          margin-top: 12px;
+        }
+        #mainContent > .scroll-wrapper > ul > li:last-child{
+          margin-bottom: 12px;
+        }
+        #mainContent > .scroll-wrapper > ul > li{
           position: relative;
           font-size: small;
           padding: 10px 5px 0;
@@ -171,7 +197,7 @@
           float: right;
           margin: 10px;
         }
-        .reveal-btn {
+        .trigger-btn {
           display: inline-flex;
           width: 21px;
           height: 100%;
@@ -184,21 +210,21 @@
           transition: .3s;
           cursor: pointer;
         }
-        .reveal-btn:hover {
+        .trigger-btn:hover {
           background-color: #25d366;
           color: #ffffff;
           border-radius: 4px;
           transform: rotate(360deg);
         }
-        .reveal-btn:active, .reveal-btn.active:active {
+        .trigger-btn:active, .trigger-btn.active:active {
           background-color: var(--bg-color);
           color: #25d366bf;
         }
-        .reveal-btn.active {
+        .trigger-btn.active {
           background-color: #25d366;
           color: #ffffff;
         }
-        .reveal-btn svg {
+        .trigger-btn svg {
           width: 100%;
           height: 100%;
         }
@@ -245,10 +271,10 @@
         label:active::after, input:checked + label:active::after {
           box-shadow: 0 0 4px #000000bf;
         }
-        .collapsible, .var-style, .var-style * {
+        .popover, .var-style, .var-style * {
           box-sizing: border-box;
         }
-        .collapsible {
+        .popover {
           position: absolute;
           top: 100%;
           left: 0;
@@ -261,16 +287,16 @@
           border-radius: 5px;
           z-index: 1;
         }
-        .collapsible.show {
+        .popover.show {
           max-height: 150px;
           box-shadow: 0px 2px 12px #000000bf;
           background-color: var(--bg-color);
         }
-        .collapsible.up {
+        .popover.up {
           top: 0;
           transform: translateY(-100%);
         }
-        .collapsible .cancel-btn {
+        .popover .cancel-btn {
           border: none;
           background: none;
           padding: 4px 0 10px;
@@ -281,11 +307,11 @@
           font-size: 12px;
           color: var(--text-color);
         }
-        .collapsible .cancel-btn:hover > locales {
+        .popover .cancel-btn:hover > locales {
           color: var(--text-color);
           text-decoration: underline;
         }
-        .collapsible .cancel-btn:active > locales {
+        .popover .cancel-btn:active > locales {
           opacity: 0.5;
         }
         .var-style {
@@ -463,276 +489,280 @@
           </div>
           <br>
         </div>
-        <h2 style="margin: 10px 0; padding-right: 10px;">
-          <locales data-locale="extensionSettings"></locales>
-        </h2>
-        <ul>
-          <li>
-            <locales data-locale="toggleMessages"></locales>
-            <button type="button" class="reveal-btn" data-localetitle="openAdvancedSettings">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64z" />
-              </svg>
-            </button>
-            <input type="checkbox" id="messages" data-style="messages">
-            <label for="messages" data-localetitle="toggleMessagesDescription"></label>
-            <div class="collapsible">
-              <form class="var-style">
-                <locales data-locale="blurInputLabel"></locales>
-                <button type="reset" data-localetitle="resetValue">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
-                      <path stroke-miterlimit="10" d="M6.395 7.705A7.885 7.885 0 0 1 12 5.382a7.929 7.929 0 0 1 7.929 7.929A7.94 7.94 0 0 1 12 21.25a7.939 7.939 0 0 1-7.929-7.94" />
-                      <path stroke-linejoin="round" d="m7.12 2.75l-.95 3.858a1.332 1.332 0 0 0 .97 1.609l3.869.948" />
-                    </g>
-                  </svg>
-                </button>
-                <input type="number" name="msBlur" id="msBlur" data-var-name="msBlur" value="8" data-localetitle="msBlurInputDescription">
-                <span class="unit">px</span>
-                <button type="submit" data-localetitle="msBlurInputDescription">✔</button>
-              </form>
-              <button class="cancel-btn">
-                <locales data-locale="cancel"></locales>
+        <h2 style="margin: 5px 0; padding-right: 10px;">
+            <locales data-locale="extensionSettings"></locales>
+          </h2>
+        <div class="scroll-wrapper">
+          <div class="top-edge"></div>
+          <div class="bottom-edge"></div>
+          <ul>
+            <li>
+              <locales data-locale="toggleMessages"></locales>
+              <button type="button" class="trigger-btn" data-localetitle="openAdvancedSettings">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64z" />
+                </svg>
               </button>
-            </div>
-          </li>
-          <li>
-            <locales data-locale="toggleMessagesPreview"></locales>
-            <button type="button" class="reveal-btn" data-localetitle="openAdvancedSettings">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64z" />
-              </svg>
-            </button>
-            <input type="checkbox" id="messagesPreview" data-style="messagesPreview">
-            <label for="messagesPreview" data-localetitle="toggleMessagesPreviewDescription"></label>
-            <div class="collapsible">
-              <form class="var-style">
-                <locales data-locale="blurInputLabel"></locales>
-                <button type="reset" data-localetitle="resetValue">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
-                      <path stroke-miterlimit="10" d="M6.395 7.705A7.885 7.885 0 0 1 12 5.382a7.929 7.929 0 0 1 7.929 7.929A7.94 7.94 0 0 1 12 21.25a7.939 7.939 0 0 1-7.929-7.94" />
-                      <path stroke-linejoin="round" d="m7.12 2.75l-.95 3.858a1.332 1.332 0 0 0 .97 1.609l3.869.948" />
-                    </g>
-                  </svg>
+              <input type="checkbox" id="messages" data-style="messages">
+              <label for="messages" data-localetitle="toggleMessagesDescription"></label>
+              <div class="popover">
+                <form class="var-style">
+                  <locales data-locale="blurInputLabel"></locales>
+                  <button type="reset" data-localetitle="resetValue">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
+                        <path stroke-miterlimit="10" d="M6.395 7.705A7.885 7.885 0 0 1 12 5.382a7.929 7.929 0 0 1 7.929 7.929A7.94 7.94 0 0 1 12 21.25a7.939 7.939 0 0 1-7.929-7.94" />
+                        <path stroke-linejoin="round" d="m7.12 2.75l-.95 3.858a1.332 1.332 0 0 0 .97 1.609l3.869.948" />
+                      </g>
+                    </svg>
+                  </button>
+                  <input type="number" name="msBlur" id="msBlur" data-var-name="msBlur" value="8" data-localetitle="msBlurInputDescription">
+                  <span class="unit">px</span>
+                  <button type="submit" data-localetitle="msBlurInputDescription">✔</button>
+                </form>
+                <button class="cancel-btn">
+                  <locales data-locale="cancel"></locales>
                 </button>
-                <input type="number" name="mspBlur" id="mspBlur" data-var-name="mspBlur" value="8" data-localetitle="mspBlurInputDescription">
-                <span class="unit">px</span>
-                <button type="submit" data-localetitle="mspBlurInputDescription">✔</button>
-              </form>
-              <button class="cancel-btn">
-                <locales data-locale="cancel"></locales>
+              </div>
+            </li>
+            <li>
+              <locales data-locale="toggleMessagesPreview"></locales>
+              <button type="button" class="trigger-btn" data-localetitle="openAdvancedSettings">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64z" />
+                </svg>
               </button>
-            </div>
-          </li>
-          <li>
-            <locales data-locale="toggleMediaPreview"></locales>
-            <button type="button" class="reveal-btn" data-localetitle="openAdvancedSettings">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64z" />
-              </svg>
-            </button>
-            <input type="checkbox" id="mediaPreview" data-style="mediaPreview">
-            <label for="mediaPreview" data-localetitle="toggleMediaPreviewDescription"></label>
-            <div class="collapsible">
-              <form class="var-style">
-                <locales data-locale="blurInputLabel"></locales>
-                <button type="reset" data-localetitle="resetValue">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
-                      <path stroke-miterlimit="10" d="M6.395 7.705A7.885 7.885 0 0 1 12 5.382a7.929 7.929 0 0 1 7.929 7.929A7.94 7.94 0 0 1 12 21.25a7.939 7.939 0 0 1-7.929-7.94" />
-                      <path stroke-linejoin="round" d="m7.12 2.75l-.95 3.858a1.332 1.332 0 0 0 .97 1.609l3.869.948" />
-                    </g>
-                  </svg>
+              <input type="checkbox" id="messagesPreview" data-style="messagesPreview">
+              <label for="messagesPreview" data-localetitle="toggleMessagesPreviewDescription"></label>
+              <div class="popover">
+                <form class="var-style">
+                  <locales data-locale="blurInputLabel"></locales>
+                  <button type="reset" data-localetitle="resetValue">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
+                        <path stroke-miterlimit="10" d="M6.395 7.705A7.885 7.885 0 0 1 12 5.382a7.929 7.929 0 0 1 7.929 7.929A7.94 7.94 0 0 1 12 21.25a7.939 7.939 0 0 1-7.929-7.94" />
+                        <path stroke-linejoin="round" d="m7.12 2.75l-.95 3.858a1.332 1.332 0 0 0 .97 1.609l3.869.948" />
+                      </g>
+                    </svg>
+                  </button>
+                  <input type="number" name="mspBlur" id="mspBlur" data-var-name="mspBlur" value="8" data-localetitle="mspBlurInputDescription">
+                  <span class="unit">px</span>
+                  <button type="submit" data-localetitle="mspBlurInputDescription">✔</button>
+                </form>
+                <button class="cancel-btn">
+                  <locales data-locale="cancel"></locales>
                 </button>
-                <input type="number" name="mdpBlur" id="mdpBlur" data-var-name="mdpBlur" value="20" data-localetitle="mdpBlurInputDescription">
-                <span class="unit">px</span>
-                <button type="submit" data-localetitle="mdpBlurInputDescription">✔</button>
-              </form>
-              <button class="cancel-btn">
-                <locales data-locale="cancel"></locales>
+              </div>
+            </li>
+            <li>
+              <locales data-locale="toggleMediaPreview"></locales>
+              <button type="button" class="trigger-btn" data-localetitle="openAdvancedSettings">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64z" />
+                </svg>
               </button>
-            </div>
-          </li>
-          <li>
-            <locales data-locale="toggleMediaGallery"></locales>
-            <button type="button" class="reveal-btn" data-localetitle="openAdvancedSettings">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64z" />
-              </svg>
-            </button>
-            <input type="checkbox" id="mediaGallery" data-style="mediaGallery">
-            <label for="mediaGallery" data-localetitle="toggleMediaGalleryDescription"></label>
-            <div class="collapsible">
-              <form class="var-style">
-                <locales data-locale="blurInputLabel"></locales>
-                <button type="reset" data-localetitle="resetValue">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
-                      <path stroke-miterlimit="10" d="M6.395 7.705A7.885 7.885 0 0 1 12 5.382a7.929 7.929 0 0 1 7.929 7.929A7.94 7.94 0 0 1 12 21.25a7.939 7.939 0 0 1-7.929-7.94" />
-                      <path stroke-linejoin="round" d="m7.12 2.75l-.95 3.858a1.332 1.332 0 0 0 .97 1.609l3.869.948" />
-                    </g>
-                  </svg>
+              <input type="checkbox" id="mediaPreview" data-style="mediaPreview">
+              <label for="mediaPreview" data-localetitle="toggleMediaPreviewDescription"></label>
+              <div class="popover">
+                <form class="var-style">
+                  <locales data-locale="blurInputLabel"></locales>
+                  <button type="reset" data-localetitle="resetValue">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
+                        <path stroke-miterlimit="10" d="M6.395 7.705A7.885 7.885 0 0 1 12 5.382a7.929 7.929 0 0 1 7.929 7.929A7.94 7.94 0 0 1 12 21.25a7.939 7.939 0 0 1-7.929-7.94" />
+                        <path stroke-linejoin="round" d="m7.12 2.75l-.95 3.858a1.332 1.332 0 0 0 .97 1.609l3.869.948" />
+                      </g>
+                    </svg>
+                  </button>
+                  <input type="number" name="mdpBlur" id="mdpBlur" data-var-name="mdpBlur" value="20" data-localetitle="mdpBlurInputDescription">
+                  <span class="unit">px</span>
+                  <button type="submit" data-localetitle="mdpBlurInputDescription">✔</button>
+                </form>
+                <button class="cancel-btn">
+                  <locales data-locale="cancel"></locales>
                 </button>
-                <input type="number" name="mdgBlur" id="mdgBlur" data-var-name="mdgBlur" value="20" data-localetitle="mdgBlurInputDescription">
-                <span class="unit">px</span>
-                <button type="submit" data-localetitle="mdgBlurInputDescription">✔</button>
-              </form>
-              <button class="cancel-btn">
-                <locales data-locale="cancel"></locales>
+              </div>
+            </li>
+            <li>
+              <locales data-locale="toggleMediaGallery"></locales>
+              <button type="button" class="trigger-btn" data-localetitle="openAdvancedSettings">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64z" />
+                </svg>
               </button>
-            </div>
-          </li>
-          <li>
-            <locales data-locale="toggleTextInput"></locales>
-            <input type="checkbox" id="textInput" data-style="textInput">
-            <label for="textInput" data-localetitle="toggleTextInputDescription"></label>
-          </li>
-          <li>
-            <locales data-locale="toggleProfilePic"></locales>
-            <button type="button" class="reveal-btn" data-localetitle="openAdvancedSettings">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64z" />
-              </svg>
-            </button>
-            <input type="checkbox" id="profilePic" data-style="profilePic">
-            <label for="profilePic" data-localetitle="toggleProfilePicDescription"></label> 
-            <div class="collapsible">
-              <form class="var-style">
-                <locales data-locale="ppSmBlurInputLabel"></locales>
-                <button type="reset" data-localetitle="resetValue">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
-                      <path stroke-miterlimit="10" d="M6.395 7.705A7.885 7.885 0 0 1 12 5.382a7.929 7.929 0 0 1 7.929 7.929A7.94 7.94 0 0 1 12 21.25a7.939 7.939 0 0 1-7.929-7.94" />
-                      <path stroke-linejoin="round" d="m7.12 2.75l-.95 3.858a1.332 1.332 0 0 0 .97 1.609l3.869.948" />
-                    </g>
-                  </svg>
+              <input type="checkbox" id="mediaGallery" data-style="mediaGallery">
+              <label for="mediaGallery" data-localetitle="toggleMediaGalleryDescription"></label>
+              <div class="popover">
+                <form class="var-style">
+                  <locales data-locale="blurInputLabel"></locales>
+                  <button type="reset" data-localetitle="resetValue">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
+                        <path stroke-miterlimit="10" d="M6.395 7.705A7.885 7.885 0 0 1 12 5.382a7.929 7.929 0 0 1 7.929 7.929A7.94 7.94 0 0 1 12 21.25a7.939 7.939 0 0 1-7.929-7.94" />
+                        <path stroke-linejoin="round" d="m7.12 2.75l-.95 3.858a1.332 1.332 0 0 0 .97 1.609l3.869.948" />
+                      </g>
+                    </svg>
+                  </button>
+                  <input type="number" name="mdgBlur" id="mdgBlur" data-var-name="mdgBlur" value="20" data-localetitle="mdgBlurInputDescription">
+                  <span class="unit">px</span>
+                  <button type="submit" data-localetitle="mdgBlurInputDescription">✔</button>
+                </form>
+                <button class="cancel-btn">
+                  <locales data-locale="cancel"></locales>
                 </button>
-                <input type="number" name="ppSmBlur" id="ppSmBlur" data-var-name="ppSmBlur" value="3" data-localetitle="ppSmBlurInputDescription">
-                <span class="unit">px</span>
-                <button type="submit" data-localetitle="ppSmBlurInputDescription">✔</button>
-              </form>
-              <form class="var-style">
-                <locales data-locale="ppBlurInputLabel"></locales>
-                <button type="reset" data-localetitle="resetValue">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
-                      <path stroke-miterlimit="10" d="M6.395 7.705A7.885 7.885 0 0 1 12 5.382a7.929 7.929 0 0 1 7.929 7.929A7.94 7.94 0 0 1 12 21.25a7.939 7.939 0 0 1-7.929-7.94" />
-                      <path stroke-linejoin="round" d="m7.12 2.75l-.95 3.858a1.332 1.332 0 0 0 .97 1.609l3.869.948" />
-                    </g>
-                  </svg>
-                </button>
-                <input type="number" name="ppBlur" id="ppBlur" data-var-name="ppBlur" value="5" data-localetitle="ppBlurInputDescription">
-                <span class="unit">px</span>
-                <button type="submit" data-localetitle="ppBlurInputDescription">✔</button>
-              </form>
-              <form class="var-style">
-                <locales data-locale="ppLgBlurInputLabel"></locales>
-                <button type="reset" data-localetitle="resetValue">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
-                      <path stroke-miterlimit="10" d="M6.395 7.705A7.885 7.885 0 0 1 12 5.382a7.929 7.929 0 0 1 7.929 7.929A7.94 7.94 0 0 1 12 21.25a7.939 7.939 0 0 1-7.929-7.94" />
-                      <path stroke-linejoin="round" d="m7.12 2.75l-.95 3.858a1.332 1.332 0 0 0 .97 1.609l3.869.948" />
-                    </g>
-                  </svg>
-                </button>
-                <input type="number" name="ppLgBlur" id="ppLgBlur" data-var-name="ppLgBlur" value="12" data-localetitle="ppLgBlurInputDescription">
-                <span class="unit">px</span>
-                <button type="submit" data-localetitle="ppLgBlurInputDescription">✔</button>
-              </form>
-              <button class="cancel-btn">
-                <locales data-locale="cancel"></locales>
+              </div>
+            </li>
+            <li>
+              <locales data-locale="toggleTextInput"></locales>
+              <input type="checkbox" id="textInput" data-style="textInput">
+              <label for="textInput" data-localetitle="toggleTextInputDescription"></label>
+            </li>
+            <li>
+              <locales data-locale="toggleProfilePic"></locales>
+              <button type="button" class="trigger-btn" data-localetitle="openAdvancedSettings">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64z" />
+                </svg>
               </button>
-            </div>
-          </li>
-          <li>
-            <locales data-locale="toggleName"></locales>
-            <button type="button" class="reveal-btn" data-localetitle="openAdvancedSettings">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64z" />
-              </svg>
-            </button>
-            <input type="checkbox" id="name" data-style="name">
-            <label for="name" data-localetitle="toggleNameDescription"></label>
-            <div class="collapsible">
-              <form class="var-style">
-                <locales data-locale="blurInputLabel"></locales>
-                <button type="reset" data-localetitle="resetValue">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
-                      <path stroke-miterlimit="10" d="M6.395 7.705A7.885 7.885 0 0 1 12 5.382a7.929 7.929 0 0 1 7.929 7.929A7.94 7.94 0 0 1 12 21.25a7.939 7.939 0 0 1-7.929-7.94" />
-                      <path stroke-linejoin="round" d="m7.12 2.75l-.95 3.858a1.332 1.332 0 0 0 .97 1.609l3.869.948" />
-                    </g>
-                  </svg>
+              <input type="checkbox" id="profilePic" data-style="profilePic">
+              <label for="profilePic" data-localetitle="toggleProfilePicDescription"></label> 
+              <div class="popover">
+                <form class="var-style">
+                  <locales data-locale="ppSmBlurInputLabel"></locales>
+                  <button type="reset" data-localetitle="resetValue">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
+                        <path stroke-miterlimit="10" d="M6.395 7.705A7.885 7.885 0 0 1 12 5.382a7.929 7.929 0 0 1 7.929 7.929A7.94 7.94 0 0 1 12 21.25a7.939 7.939 0 0 1-7.929-7.94" />
+                        <path stroke-linejoin="round" d="m7.12 2.75l-.95 3.858a1.332 1.332 0 0 0 .97 1.609l3.869.948" />
+                      </g>
+                    </svg>
+                  </button>
+                  <input type="number" name="ppSmBlur" id="ppSmBlur" data-var-name="ppSmBlur" value="3" data-localetitle="ppSmBlurInputDescription">
+                  <span class="unit">px</span>
+                  <button type="submit" data-localetitle="ppSmBlurInputDescription">✔</button>
+                </form>
+                <form class="var-style">
+                  <locales data-locale="ppBlurInputLabel"></locales>
+                  <button type="reset" data-localetitle="resetValue">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
+                        <path stroke-miterlimit="10" d="M6.395 7.705A7.885 7.885 0 0 1 12 5.382a7.929 7.929 0 0 1 7.929 7.929A7.94 7.94 0 0 1 12 21.25a7.939 7.939 0 0 1-7.929-7.94" />
+                        <path stroke-linejoin="round" d="m7.12 2.75l-.95 3.858a1.332 1.332 0 0 0 .97 1.609l3.869.948" />
+                      </g>
+                    </svg>
+                  </button>
+                  <input type="number" name="ppBlur" id="ppBlur" data-var-name="ppBlur" value="5" data-localetitle="ppBlurInputDescription">
+                  <span class="unit">px</span>
+                  <button type="submit" data-localetitle="ppBlurInputDescription">✔</button>
+                </form>
+                <form class="var-style">
+                  <locales data-locale="ppLgBlurInputLabel"></locales>
+                  <button type="reset" data-localetitle="resetValue">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
+                        <path stroke-miterlimit="10" d="M6.395 7.705A7.885 7.885 0 0 1 12 5.382a7.929 7.929 0 0 1 7.929 7.929A7.94 7.94 0 0 1 12 21.25a7.939 7.939 0 0 1-7.929-7.94" />
+                        <path stroke-linejoin="round" d="m7.12 2.75l-.95 3.858a1.332 1.332 0 0 0 .97 1.609l3.869.948" />
+                      </g>
+                    </svg>
+                  </button>
+                  <input type="number" name="ppLgBlur" id="ppLgBlur" data-var-name="ppLgBlur" value="12" data-localetitle="ppLgBlurInputDescription">
+                  <span class="unit">px</span>
+                  <button type="submit" data-localetitle="ppLgBlurInputDescription">✔</button>
+                </form>
+                <button class="cancel-btn">
+                  <locales data-locale="cancel"></locales>
                 </button>
-                <input type="number" name="nmBlur" id="nmBlur" data-var-name="nmBlur" value="5" data-localetitle="nmBlurInputDescription">
-                <span class="unit">px</span>
-                <button type="submit" data-localetitle="nmBlurInputDescription">✔</button>
-              </form>
-              <button class="cancel-btn">
-                <locales data-locale="cancel"></locales>
+              </div>
+            </li>
+            <li>
+              <locales data-locale="toggleName"></locales>
+              <button type="button" class="trigger-btn" data-localetitle="openAdvancedSettings">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64z" />
+                </svg>
               </button>
-            </div>
-          </li>
-          <li>
-            <locales data-locale="toggleNoDelay"></locales>
-            <input type="checkbox" id="noDelay" data-style="noDelay">
-            <label for="noDelay" data-localetitle="toggleNoDelayDescription"></label>
-          </li>
-          <li>
-            <locales data-locale="toggleUnblurActive"></locales>
-            <input type="checkbox" id="unblurActive" data-style="unblurActive">
-            <label for="unblurActive" data-localetitle="toggleUnblurActiveDescription"></label>
-          </li>
-          <li>
-            <locales data-locale="toggleBlurOnIdle"></locales>
-            <button type="button" class="reveal-btn" data-localetitle="openAdvancedSettings">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor"
-                  d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64z" />
-              </svg>
-            </button>
-            <input type="checkbox" id="blurOnIdle" data-style="blurOnIdle">
-            <label for="blurOnIdle" data-localetitle="toggleBlurOnIdleDescription"></label>
-            <div class="collapsible up">
-              <form class="var-style">
-                <locales data-locale="itBlurInputLabel"></locales>
-                <button type="reset" data-localetitle="resetValue">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
-                      <path stroke-miterlimit="10"
-                        d="M6.395 7.705A7.885 7.885 0 0 1 12 5.382a7.929 7.929 0 0 1 7.929 7.929A7.94 7.94 0 0 1 12 21.25a7.939 7.939 0 0 1-7.929-7.94" />
-                      <path stroke-linejoin="round" d="m7.12 2.75l-.95 3.858a1.332 1.332 0 0 0 .97 1.609l3.869.948" />
-                    </g>
-                  </svg>
+              <input type="checkbox" id="name" data-style="name">
+              <label for="name" data-localetitle="toggleNameDescription"></label>
+              <div class="popover">
+                <form class="var-style">
+                  <locales data-locale="blurInputLabel"></locales>
+                  <button type="reset" data-localetitle="resetValue">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
+                        <path stroke-miterlimit="10" d="M6.395 7.705A7.885 7.885 0 0 1 12 5.382a7.929 7.929 0 0 1 7.929 7.929A7.94 7.94 0 0 1 12 21.25a7.939 7.939 0 0 1-7.929-7.94" />
+                        <path stroke-linejoin="round" d="m7.12 2.75l-.95 3.858a1.332 1.332 0 0 0 .97 1.609l3.869.948" />
+                      </g>
+                    </svg>
+                  </button>
+                  <input type="number" name="nmBlur" id="nmBlur" data-var-name="nmBlur" value="5" data-localetitle="nmBlurInputDescription">
+                  <span class="unit">px</span>
+                  <button type="submit" data-localetitle="nmBlurInputDescription">✔</button>
+                </form>
+                <button class="cancel-btn">
+                  <locales data-locale="cancel"></locales>
                 </button>
-                <input type="number" name="itBlur" id="itBlur" data-var-name="itBlur" value="15"
-                  data-localetitle="itBlurInputDescription">
-                <span class="unit">s</span>
-                <button type="submit" data-localetitle="itBlurInputDescription">✔</button>
-              </form>
-              <form class="var-style">
-                <locales data-locale="wiBlurInputLabel"></locales>
-                <button type="reset" data-localetitle="resetValue">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
-                      <path stroke-miterlimit="10"
-                        d="M6.395 7.705A7.885 7.885 0 0 1 12 5.382a7.929 7.929 0 0 1 7.929 7.929A7.94 7.94 0 0 1 12 21.25a7.939 7.939 0 0 1-7.929-7.94" />
-                      <path stroke-linejoin="round" d="m7.12 2.75l-.95 3.858a1.332 1.332 0 0 0 .97 1.609l3.869.948" />
-                    </g>
-                  </svg>
-                </button>
-                <input type="number" name="wiBlur" id="wiBlur" data-var-name="wiBlur" value="14"
-                  data-localetitle="wiBlurInputDescription">
-                <span class="unit">px</span>
-                <button type="submit" data-localetitle="wiBlurInputDescription">✔</button>
-              </form>
-              <button class="cancel-btn">
-                <locales data-locale="cancel"></locales>
+              </div>
+            </li>
+            <li>
+              <locales data-locale="toggleNoDelay"></locales>
+              <input type="checkbox" id="noDelay" data-style="noDelay">
+              <label for="noDelay" data-localetitle="toggleNoDelayDescription"></label>
+            </li>
+            <li>
+              <locales data-locale="toggleUnblurActive"></locales>
+              <input type="checkbox" id="unblurActive" data-style="unblurActive">
+              <label for="unblurActive" data-localetitle="toggleUnblurActiveDescription"></label>
+            </li>
+            <li>
+              <locales data-locale="toggleBlurOnIdle"></locales>
+              <button type="button" class="trigger-btn" data-localetitle="openAdvancedSettings">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path fill="currentColor"
+                    d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64z" />
+                </svg>
               </button>
-            </div>
-          </li>
-        </ul>
+              <input type="checkbox" id="blurOnIdle" data-style="blurOnIdle">
+              <label for="blurOnIdle" data-localetitle="toggleBlurOnIdleDescription"></label>
+              <div class="popover up">
+                <form class="var-style">
+                  <locales data-locale="itBlurInputLabel"></locales>
+                  <button type="reset" data-localetitle="resetValue">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
+                        <path stroke-miterlimit="10"
+                          d="M6.395 7.705A7.885 7.885 0 0 1 12 5.382a7.929 7.929 0 0 1 7.929 7.929A7.94 7.94 0 0 1 12 21.25a7.939 7.939 0 0 1-7.929-7.94" />
+                        <path stroke-linejoin="round" d="m7.12 2.75l-.95 3.858a1.332 1.332 0 0 0 .97 1.609l3.869.948" />
+                      </g>
+                    </svg>
+                  </button>
+                  <input type="number" name="itBlur" id="itBlur" data-var-name="itBlur" value="15"
+                    data-localetitle="itBlurInputDescription">
+                  <span class="unit">s</span>
+                  <button type="submit" data-localetitle="itBlurInputDescription">✔</button>
+                </form>
+                <form class="var-style">
+                  <locales data-locale="wiBlurInputLabel"></locales>
+                  <button type="reset" data-localetitle="resetValue">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
+                        <path stroke-miterlimit="10"
+                          d="M6.395 7.705A7.885 7.885 0 0 1 12 5.382a7.929 7.929 0 0 1 7.929 7.929A7.94 7.94 0 0 1 12 21.25a7.939 7.939 0 0 1-7.929-7.94" />
+                        <path stroke-linejoin="round" d="m7.12 2.75l-.95 3.858a1.332 1.332 0 0 0 .97 1.609l3.869.948" />
+                      </g>
+                    </svg>
+                  </button>
+                  <input type="number" name="wiBlur" id="wiBlur" data-var-name="wiBlur" value="14"
+                    data-localetitle="wiBlurInputDescription">
+                  <span class="unit">px</span>
+                  <button type="submit" data-localetitle="wiBlurInputDescription">✔</button>
+                </form>
+                <button class="cancel-btn">
+                  <locales data-locale="cancel"></locales>
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
 
       </div>
       <span id="popupMessage"></span>

@@ -9,7 +9,7 @@ if (typeof browser == "undefined") {
 }
 
 const styleIdentifier = "pfwa";
-const settingsIdentifier = "settings";
+const SETTINGS_IDENTIFIER = "settings";
 
 let version = browser.runtime.getManifest().version;
 document.getElementById('version').innerText = version;
@@ -21,6 +21,7 @@ document.querySelectorAll('[data-localetitle]').forEach(e => {
   e.title = browser.i18n.getMessage(e.dataset.localetitle);
 });
 
+// toast utility
 const showToast = (message, duration = 3000, persistent = false) => {
   const container = document.getElementById('toast-container');
   const toast = document.createElement('div');
@@ -49,113 +50,144 @@ const showToast = (message, duration = 3000, persistent = false) => {
   }
 }
 
+// detect outside click utility
+const onClickOutside = (targetElement, callback, once = true) => {
+  function handler(ev) {
+    if (!ev.composedPath().includes(targetElement)) {
+      callback(ev);
+      if (once) {
+        document.removeEventListener("click", handler);
+      }
+    }
+  }
 
-let switches = document.querySelectorAll("input[type='checkbox']");
+  setTimeout(() => {
+    document.addEventListener("click", handler);
+  }, 0);
+
+  return () => document.removeEventListener("click", handler);
+}
+
+
+// get current setting
+const getCurrentSettings = async (settingsIdentifier = SETTINGS_IDENTIFIER) => {
+  const result = await browser.storage.sync.get([settingsIdentifier]);
+  if (!result.hasOwnProperty(settingsIdentifier)) {
+    browser.runtime.reload();
+    return;
+  }
+  return result;
+};
+
+// set input value using saved value
+const setInputValue = (input, settings) => {
+  const varName = input.dataset.varName;
+  input.value = parseInt(
+    varName === "itBlur"
+      ? settings?.blurOnIdle?.idleTimeout || 15
+      : settings.varStyles[varName]
+  );
+};
+
 
 // Track switch changes and save settings
+async function saveSettings(ev) {
+  let id = ev.currentTarget.dataset.style;
+  let checked = ev.currentTarget.checked;
+
+  const result = await getCurrentSettings();
+  if (id == "on") {
+    result.settings.on = checked;
+  } else if (id === "blurOnIdle") {
+    result.settings.blurOnIdle.isEnabled = checked;
+  } else {
+    result.settings.styles[id] = checked;
+  }
+  browser.storage.sync.set(result);
+}
+
+const switches = document.querySelectorAll("input[type='checkbox']");
+
 switches.forEach((checkbox) => {
   checkbox.addEventListener('change', saveSettings);
 });
-function saveSettings() {
-  let id = this.dataset.style;
-  let checked = this.checked;
 
-  browser.storage.sync.get([settingsIdentifier]).then((result) => {
-    if (!result.hasOwnProperty(settingsIdentifier)) {
-      browser.runtime.reload();
-      return;
-    }
-    if (id == "on") {
-      result.settings.on = checked;
-    } else if (id === "blurOnIdle") {
-      result.settings.blurOnIdle.isEnabled = checked;
-    } else {
-      result.settings.styles[id] = checked;
-    }
-    browser.storage.sync.set(result);
-  });
-}
 
 // toggle open/close blur amount settings
-const showBlurSettings = (ev) => {
-  // if current target is currently active button, only close currently active collapsible
-  if (ev.currentTarget.classList.contains("active")) {
-    ev.currentTarget.classList.remove("active");
-    ev.currentTarget.parentNode.querySelector(".collapsible").classList.remove("show");
-  } else {
-    console.log("not contains active");
-    // close other
-    ev.currentTarget.parentNode.parentNode.querySelector(".reveal-btn.active")?.classList.remove("active");
-    ev.currentTarget.parentNode.parentNode.querySelector(".collapsible.show")?.classList.remove("show");
+let removeOutsideListener = null;
 
-    // and open collapsible in current target 
-    ev.currentTarget.classList.add("active");
-    ev.currentTarget.parentNode.querySelector(".collapsible").classList.add("show");
+const togglePopup = (ev) => {
+  const currentSettingElement = ev.currentTarget.parentNode.querySelector(".popover");
+  const trigger = ev.currentTarget;
+
+  const closeSetting = () => {
+    trigger.classList.remove("active");
+    currentSettingElement.classList.remove('show');
+  }
+
+  if (!trigger.classList.contains("active")) {
+    trigger.classList.add("active");
+    currentSettingElement.classList.add("show");
+    removeOutsideListener = onClickOutside(ev.currentTarget.parentNode.querySelector(".popover"), (ev) => {
+      console.log('outside click')
+      closeSetting();
+    });
+  } else {
+    closeSetting();
+    removeOutsideListener();
   }
 }
-const revealButtons = document.querySelectorAll(".reveal-btn");
-revealButtons.forEach((revealBtn) => {
-  revealBtn.addEventListener("click", showBlurSettings)
+
+const cancelAdvancedSetting = async (ev) => {
+  const popoverElement = ev.currentTarget.parentNode;
+
+  const result = await getCurrentSettings();
+  popoverElement.querySelectorAll("input[type='number']").forEach(input => {
+    setInputValue(input, result.settings);
+  });
+
+  popoverElement.parentNode.querySelector(".trigger-btn.active")?.classList.remove("active");
+  popoverElement.classList.remove("show");
+  removeOutsideListener?.();
+}
+
+const triggerButtons = document.querySelectorAll(".trigger-btn");
+triggerButtons.forEach((triggerBtn) => {
+  triggerBtn.addEventListener("click", togglePopup);
 })
 
 const cancelButtons = document.querySelectorAll(".cancel-btn");
 cancelButtons.forEach((cancelBtn) => {
-  cancelBtn.addEventListener("click", (ev) => {
-    const collapsibleElement = ev.currentTarget.parentNode;
+  cancelBtn.addEventListener("click", cancelAdvancedSetting);
+});
 
-    browser.storage.sync.get([settingsIdentifier]).then((result) => {
-      if (!result.hasOwnProperty(settingsIdentifier)) {
-        browser.runtime.reload();
-        return;
-      }
-      // reset input value to current used value
-      const numInputs = collapsibleElement.querySelectorAll('input')
-      numInputs.forEach(numInput => {
-        const varName = numInput.dataset.varName;
-        if (varName === "itBlur") {
-          numInput.value = parseInt(result.settings?.blurOnIdle?.idleTimeout || 15);
-        } else {
-          numInput.value = parseInt(result.settings.varStyles[varName]);
-        }
-      })
-    });
 
-    collapsibleElement.classList.remove("show");
-    ev.currentTarget.parentNode.parentNode.querySelector(".reveal-btn.active").classList.remove("active");
-  })
-})
+// track form save/submit for advanced settings (variable style settings)
+async function saveFormSettings(ev) {
+  ev.preventDefault();
+  const [key, val] = Object.entries(Object.fromEntries(new FormData(ev.target)))[0];
 
-// track form save/submit for variable style settings
+  const result = await getCurrentSettings();
+  if (key === "itBlur") {
+    result.settings.blurOnIdle.idleTimeout = val;
+  } else {
+    result.settings.varStyles[key] = val + "px";
+  }
+  browser.storage.sync.set(result);
+
+  showToast('Saved!');
+}
+
 const forms = document.querySelectorAll("form.var-style");
 
 forms.forEach((form) => {
   form.addEventListener("submit", saveFormSettings);
 })
-function saveFormSettings(ev) {
-  ev.preventDefault();
-  const [key, val] = Object.entries(Object.fromEntries(new FormData(ev.target)))[0];
 
-  browser.storage.sync.get([settingsIdentifier]).then((result) => {
-    if (!result.hasOwnProperty(settingsIdentifier)) {
-      browser.runtime.reload();
-      return;
-    }
-    if (key === "itBlur") {
-      result.settings.blurOnIdle.idleTimeout = val;
-    } else {
-      result.settings.varStyles[key] = val + "px";
-    }
-    browser.storage.sync.set(result);
-  });
-  showToast('Saved!');
-}
 
 // Load settings and update switches
-browser.storage.sync.get([settingsIdentifier]).then((result) => {
-  if (!result.hasOwnProperty(settingsIdentifier)) {
-    browser.runtime.reload();
-    return;
-  }
+const init = async () => {
+  const result = await getCurrentSettings();
 
   switches.forEach((checkbox) => {
     let id = checkbox.dataset.style;
@@ -171,15 +203,12 @@ browser.storage.sync.get([settingsIdentifier]).then((result) => {
   // set variable input value
   forms.forEach((form) => {
     const numInput = form.querySelector(`input[type="number"]`)
-    const varName = numInput.dataset.varName;
-    if (varName === "itBlur") {
-      numInput.value = parseInt(result.settings?.blurOnIdle?.idleTimeout || 15);
-    } else {
-      numInput.value = parseInt(result.settings.varStyles[varName]);
-    }
+    setInputValue(numInput, result.settings);
   })
+}
 
-});
+init();
+
 
 // theme detector and changer
 

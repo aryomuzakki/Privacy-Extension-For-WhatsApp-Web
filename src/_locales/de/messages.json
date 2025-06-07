@@ -75,22 +75,13 @@
         "message": "Verstecke WhatsApp nach einer gewissen Zeit, sobald keine Maus/Tastatur Eingabe erkannt wird."
     },
     "toggleDarkMode": {
-        "message": "Toggle Dark Mode"
-    },
-    "light": {
-        "message": "Using Light Mode"
-    },
-    "dark": {
-        "message": "Using Dark Mode"
-    },
-    "system-default": {
-        "message": "Using System Default Preferences"
+        "message": "Dunkelmodus umschalten"
     },
     "openAdvancedSettings": {
-        "message": "Open Advanced Settings"
+        "message": "Erweiterte Einstellungen öffnen"
     },
     "cancel": {
-        "message": "Cancel"
+        "message": "Abbrechen"
     },
     "resetValue": {
         "message": "Zurücksetzen"
