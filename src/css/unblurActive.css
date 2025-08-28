@@ -78,7 +78,7 @@ body:hover div._amk4 > ._amk6 :is(div, button)[role="button"]:not(.x13yyeie, ._a
 body:hover div._ak4o /* voice note / audio in chat panel */,
 body:hover div._ahy5 > div /* link preview in chat panel */,
 body:hover div._ak15 > ._ahwq /* some link preview in link list panel */,
-body:hover span._ajxd._ajxk > ._ajxj._ajxd /* sticker in chat panel */,
+body:hover span._ajxd._ajxk ._ajxj._ajxd /* sticker in chat panel */,
 body:hover div.xz9dduz > div:first-child /* maps / location */,
 body:hover div._ajwt > div:first-child > div:nth-child(2) > div /* media preview in send media */,
 body:hover div._ak3i /* media preview thumb in send media */,
