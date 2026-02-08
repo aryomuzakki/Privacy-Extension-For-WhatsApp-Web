@@ -13,8 +13,8 @@
 .b021xdil /* multi contacts attachment */,
 
 /* updated wa version (v2.3000.xx) */
-div[role="gridcell"] ._ak8h, /* user/group profile pic in message list */
-div[role="listitem"] ._ak8h /* user/group profile pic in archived message list */,
+div[role="gridcell"] ._ak8h /* user/group profile pic in message list */,
+div[role="listitem"] ._ak8h:not(:has([data-icon="community-group"])) /* user/group profile pic in archived message list */,
 div._ak8n > ._asin /* user/group profile pic in details list and popup list */,
 div[role="dialog"] ._ak8h /* user/group profile pic in popup list */,
 header > div[role="button"]:first-child > div /* user/group profile pic at the top of chat panel */,
@@ -67,7 +67,7 @@ div.x1okw0bk.xbelrpt > div.x1n2onr6.x1c9tyrk.xeusxvb.x1pahc9y.x1ertn4p /* user p
 
 /* updated wa version (v2.3000.xx) */
 div[role="gridcell"] ._ak8h:hover /* user/group profile pic in message list */,
-div[role="listitem"] ._ak8h:hover /* user/group profile pic in archived message list */,
+div[role="listitem"] ._ak8h:not(:has([data-icon="community-group"])):hover /* user/group profile pic in archived message list */,
 div._ak8n ._asin:hover /* user/group profile pic in details list and popup list */,
 div[role="dialog"] ._ak8h:hover /* user/group profile pic in popup list */,
 header > div[role="button"]:first-child > div:hover /* user/group profile pic at the top of chat panel */,

@@ -18,12 +18,12 @@ div[role="button"] > div > ._8nE1Y ._21S-L /*user/group name in non message list
 .djhxrpsl /* name in multi contact attachment */,
 
 /* updated wa version (v2.3000.xx) */
-div[role="gridcell"] ._ak8q:not(:has(div._ak8i)) /* user/group name in message list */,
-div[role="button"][class=""] ._ak8q /* user/group name in details list and popup list */,
+div[role="gridcell"] ._ak8q:not(:has(div._ak8i)):has(*) /* user/group name in message list */,
+div[role="button"][class=""] ._ak8q:has(*) /* user/group name in details list and popup list */,
 div[role="dialog"] ._ak8q /* user name in contact popup list */,
 div[role="dialog"] div.copyable-text /* phone number and business user name in contact popup list */,
 div[role="gridcell"] ._ak8q:has(div._ak8i) > span /* group name of community in message list */,
-div[role="gridcell"] ._am_2 > span /* community name in message list */,
+div._am_1 > div._ak8l._ap1_ > div._am_2 > span /* community name in message list and details list */,
 div[role="button"].x78zum5.xdt5ytf.x1iyjqo2.xl56j7k.xeuugli > div:nth-child(1) /* user/group name at the top of chat panel */,
 div[role="button"].x78zum5.xdt5ytf.x1iyjqo2.xl56j7k.xeuugli > div:nth-child(2) /* user/group details at the top of chat panel */,
 div._ahxj /* user name in group chat messages */,
@@ -61,12 +61,12 @@ div[role="button"] > div > ._8nE1Y ._21S-L:hover /*user/group name in non messag
 .djhxrpsl:hover /* name in multi contact attachment */,
 
 /* updated wa version (v2.3000.xx) */
-div[role="gridcell"] ._ak8q:not(:has(div._ak8i)):hover /* user/group name in message list */,
-div[role="button"][class=""] ._ak8q:hover /* user/group name in details list and popup list */,
+div[role="gridcell"] ._ak8q:not(:has(div._ak8i)):has(*):hover /* user/group name in message list */,
+div[role="button"][class=""] ._ak8q:has(*):hover /* user/group name in details list and popup list */,
 div[role="dialog"] ._ak8q:hover /* user name in contact popup list */,
 div[role="dialog"] div.copyable-text:hover /* phone number and business user name in contact popup list */,
 div[role="gridcell"] ._ak8q:has(div._ak8i) > span:hover /* group name of community in message list */,
-div[role="gridcell"] ._am_2 > span:hover /* community name in message list */,
+div._am_1 > div._ak8l._ap1_ > div._am_2 > span:hover /* community name in message list and details list */,
 div[role="button"].x78zum5.xdt5ytf.x1iyjqo2.xl56j7k.xeuugli > div:nth-child(1):hover /* user/group name at the top of chat panel */,
 div[role="button"].x78zum5.xdt5ytf.x1iyjqo2.xl56j7k.xeuugli > div:nth-child(2):hover /* user/group details at the top of chat panel */,
 div._ahxj:hover /* user name in group chat messages */,
