@@ -74,6 +74,15 @@
     "toggleBlurOnIdleDescription": {
         "message": "Desfoca o WhatsApp quando não há atividade de mouse/teclado após um certo tempo."
     },
+    "toggleDarkMode": {
+        "message": "Modo Escuro"
+    },
+    "openAdvancedSettings": {
+        "message": "Abrir configurações avançadas"
+    },
+    "cancel": {
+        "message": "Cancelar"
+    },
     "resetValue": {
         "message": "Redefinir Valor para Padrão"
     },
@@ -91,7 +100,7 @@
     },
     "mdgBlurInputDescription": {
         "message": "Defina a quantidade de desfoque para galeria de mídia (em pixels)."
-    },  
+    },
     "ppSmBlurInputLabel": {
         "message": "Desfoque para foto de perfil miniatura"
     },
