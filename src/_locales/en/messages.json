@@ -11,6 +11,9 @@
     "extensionToggle": {
         "message": "Toggle"
     },
+    "extensionToggleDescription": {
+        "message": "Toggle Extension Active/Deactive"
+    },
     "extensionSettings": {
         "message": "Settings"
     },
@@ -74,8 +77,20 @@
     "toggleBlurOnIdleDescription": {
         "message": "Blur WhatsApp when there is no mouse/keyboard activity after a certain time."
     },
+    "toggleTheme": {
+        "message": "Toggle Light, Dark, or System Preference"
+    },
+    "openAdvancedSettings": {
+        "message": "Open Advanced Settings"
+    },
+    "cancel": {
+        "message": "Cancel"
+    },
     "resetValue": {
         "message": "Reset Value to Default"
+    },
+    "toastSaved": {
+        "message": "Saved!"
     },
     "blurInputLabel": {
         "message": "Blur amount"
