@@ -60,9 +60,9 @@ body:hover .njub1g37 .kk3akd72.claouzo6 /*Starred message profile pic*/,
 
 /* updated wa version (v2.3000.xx) */
 /* mediaGallery */
-body:hover div._ajuf._ajuh._ajug > div /* media in overlay view */,
+body:hover div.overlay div.x1n2onr6.x78zum5.x6s0dn4.xl56j7k.xh8yej3.xeuugli.x5yr21d.xdt5ytf > div > div:first-child /* media in overlay view */,
 body:hover div.x1conndi /* media thumb in overlay view and details panel */,
-body:hover div.x4t2iug /* media thumb in media gallery panel */,
+body:hover div[role="listitem"] button > div[style^="background-image"] /* media thumb in media gallery panel */,
 
 /* mediaPreview */
 body:hover div._amk4 > ._amk6 :is(div, button)[role="button"][class]:not(.x13yyeie, .x1dxgm4b, .x7fhd9j, ._ak3u, ._aju3, [data-js-context-icon], .x1a06ls3, .x6ikm8r.x10wlt62.xlyipyv, .x1bvqhpb.x12lo8hy, .xo1mcw5.x1xlr1w8, ._ahy-, :has(span.xhslqc4)) /* media messages in chat panel and contact attachment button */,
