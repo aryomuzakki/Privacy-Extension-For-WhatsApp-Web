@@ -69,7 +69,7 @@ div.x4t2iug:hover /* media thumb in media gallery panel */,
 
 /* mediaPreview */
 div._amk4 > ._amk6:hover :is(div, button)[role="button"][class]:not(.x13yyeie, .x1dxgm4b, .x7fhd9j, ._ak3u, ._aju3, [data-js-context-icon], .x1a06ls3, .x6ikm8r.x10wlt62.xlyipyv, .x1bvqhpb.x12lo8hy, .xo1mcw5.x1xlr1w8, ._ahy-, :has(span.xhslqc4)) /* media messages in chat panel and contact attachment button */,
-div._aju3:hover ._agtn > div /* media in quoted message */,
+div._aju3:hover div.x3psx0u.x6ikm8r.x10wlt62 > div /* media in quoted message */,
 div._aju3:hover .x1ozewix /* icon for filename in quoted message */,
 div._aju3:hover .x1ozewix + span /* filename in quoted message */,
 div._aju3:hover span._ajxd._ajxk /* sticker in quoted message */,
