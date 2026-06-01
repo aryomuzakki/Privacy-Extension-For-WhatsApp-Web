@@ -52,6 +52,7 @@
           padding: 10px 0 10px 12px;
           -moz-user-select: none;
           user-select: none;
+          transition: color .3s, background-color .3s;
         }
         hr {
           border: 0.5px solid var(--border-line-color);
@@ -163,6 +164,7 @@
           width: 100%;
           z-index: 2;
           height: 6px;
+          transition: none !important;
         }
         #mainContent > .wrapper > .top-edge {
           --degree: 180deg;
@@ -583,8 +585,8 @@
           <locales data-locale="extensionSettings"></locales>
         </h2>
         <div class="wrapper">
-          <div class="top-edge"></div>
-          <div class="bottom-edge"></div>
+          <!-- <div class="top-edge"></div> -->
+          <!-- <div class="bottom-edge"></div> -->
           <ul>
             <li>
               <locales data-locale="toggleMessages"></locales>
