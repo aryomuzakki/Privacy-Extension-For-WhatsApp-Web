@@ -18,20 +18,21 @@ div[role="button"] > div > ._8nE1Y ._21S-L /*user/group name in non message list
 .djhxrpsl /* name in multi contact attachment */,
 
 /* updated wa version (v2.3000.xx) */
-div[role="gridcell"] ._ak8q:not(:has(div._ak8i)):has(*) /* user/group name in message list */,
+div[role="gridcell"] div.x14ug900.x78zum5.x1iyjqo2.x1jchvi3.xdod15v.x6ikm8r.x10wlt62.x1mzt3pk.x1yc453h.xo1l8bm:not(.x1gslohp) /* user/group name in message list */,
 div[role="button"][class=""] ._ak8q:has(*) /* user/group name in details list and popup list */,
 div[role="dialog"] ._ak8q /* user name in contact popup list */,
 div[role="dialog"] div.copyable-text /* phone number and business user name in contact popup list */,
-div[role="gridcell"] ._ak8q:has(div._ak8i) > span /* group name of community in message list */,
-div._am_1 > div._ak8l._ap1_ > div._am_2 > span /* community name in message list and details list */,
+div[role="gridcell"] div.x14ug900.x78zum5.x1iyjqo2.x1jchvi3.xdod15v.x6ikm8r.x10wlt62.x1mzt3pk.x1yc453h.xo1l8bm.x1gslohp > span._ao3e /* group name of community in message list */,
+div.x6s0dn4.xhslqc4.x78zum5.x1f6kntn.xd4r4e8.x1gslohp.xvrgn94.x1yc453h > span /* community name in message list and details list */,
+div.x1c4vz4f.xs83m0k.xdl72j9.x1g77sc7.xeuugli.x2lwn1j.xozqiw3.x1oa3qoh.x12fk4p8.x6ikm8r.x10wlt62.xuxw1ft.xlyipyv.x9f619.xggjnk3 span._ao3e /* community name in group details info */,
 div[role="button"].x78zum5.xdt5ytf.x1iyjqo2.xl56j7k.xeuugli > div:nth-child(1) /* user/group name at the top of chat panel */,
 div[role="button"].x78zum5.xdt5ytf.x1iyjqo2.xl56j7k.xeuugli > div:nth-child(2) /* user/group details at the top of chat panel */,
-div._ahxj /* user name in group chat messages */,
+div:where(._amk4, ._amk6) div.x193iq5w.xj9w6cj.x19v9tvf.xk50ysn /* user name in group chat messages */,
 div._ahz1 /* user name in contact attachment */,
 div.xs83m0k.x1iyjqo2.xdl72j9.x18wx58x.x6ikm8r.x10wlt62 /* user name in multiple contacts attachment */,
 div.overlay ._ak8q /* user name in overlay media view */,
 div.x1c4vz4f.xs83m0k.xdl72j9.x1g77sc7.x78zum5.xozqiw3.x1oa3qoh.x12fk4p8.xeuugli.x2lwn1j.x1nhvcw1.xdt5ytf.x6s0dn4 > div[class=""] > span /* user name in details info */,
-div.x2b8uid.x193iq5w.xqmxbcd /* group name in details info */,
+div._aldd.x112ta8.x3hdcf8.xje27ih.x18dplov.xozx76t.x14ug900.xngnso2.xcgk4ki /* group name in details info */,
 div.x1c4vz4f.xs83m0k.xdl72j9.x1g77sc7.x78zum5.xozqiw3.x1oa3qoh.x12fk4p8.xeuugli.x2lwn1j.x1nhvcw1.xdt5ytf.x6s0dn4 > div.x1evy7pa.x1anpbxc > span /* user phone number in details info */,
 div.x1evy7pa.x1kgmq87.x2b8uid /* group short details in details info */,
 div.xlm9qay.x1s688f.x1e56ztr /* business user name in details info */,
@@ -61,20 +62,21 @@ div[role="button"] > div > ._8nE1Y ._21S-L:hover /*user/group name in non messag
 .djhxrpsl:hover /* name in multi contact attachment */,
 
 /* updated wa version (v2.3000.xx) */
-div[role="gridcell"] ._ak8q:not(:has(div._ak8i)):has(*):hover /* user/group name in message list */,
+div[role="gridcell"] div.x14ug900.x78zum5.x1iyjqo2.x1jchvi3.xdod15v.x6ikm8r.x10wlt62.x1mzt3pk.x1yc453h.xo1l8bm:not(.x1gslohp):hover /* user/group name in message list */,
 div[role="button"][class=""] ._ak8q:has(*):hover /* user/group name in details list and popup list */,
 div[role="dialog"] ._ak8q:hover /* user name in contact popup list */,
 div[role="dialog"] div.copyable-text:hover /* phone number and business user name in contact popup list */,
-div[role="gridcell"] ._ak8q:has(div._ak8i) > span:hover /* group name of community in message list */,
-div._am_1 > div._ak8l._ap1_ > div._am_2 > span:hover /* community name in message list and details list */,
+div[role="gridcell"] div.x14ug900.x78zum5.x1iyjqo2.x1jchvi3.xdod15v.x6ikm8r.x10wlt62.x1mzt3pk.x1yc453h.xo1l8bm.x1gslohp > span._ao3e:hover /* group name of community in message list */,
+div.x6s0dn4.xhslqc4.x78zum5.x1f6kntn.xd4r4e8.x1gslohp.xvrgn94.x1yc453h > span:hover /* community name in message list and details list */,
+div.x1c4vz4f.xs83m0k.xdl72j9.x1g77sc7.xeuugli.x2lwn1j.xozqiw3.x1oa3qoh.x12fk4p8.x6ikm8r.x10wlt62.xuxw1ft.xlyipyv.x9f619.xggjnk3 span._ao3e:hover /* community name in group details info */,
 div[role="button"].x78zum5.xdt5ytf.x1iyjqo2.xl56j7k.xeuugli > div:nth-child(1):hover /* user/group name at the top of chat panel */,
 div[role="button"].x78zum5.xdt5ytf.x1iyjqo2.xl56j7k.xeuugli > div:nth-child(2):hover /* user/group details at the top of chat panel */,
-div._ahxj:hover /* user name in group chat messages */,
+div:where(._amk4, ._amk6) div.x193iq5w.xj9w6cj.x19v9tvf.xk50ysn:hover /* user name in group chat messages */,
 div._ahz1:hover /* user name in contact attachment */,
 div.xs83m0k.x1iyjqo2.xdl72j9.x18wx58x.x6ikm8r.x10wlt62:hover /* user name in multiple contacts attachment */,
 div.overlay ._ak8q:hover /* user name in overlay media view */,
 div.x1c4vz4f.xs83m0k.xdl72j9.x1g77sc7.x78zum5.xozqiw3.x1oa3qoh.x12fk4p8.xeuugli.x2lwn1j.x1nhvcw1.xdt5ytf.x6s0dn4 > div[class=""] > span:hover /* user name in details info */,
-div.x2b8uid.x193iq5w.xqmxbcd:hover /* group name in details info */,
+div._aldd.x112ta8.x3hdcf8.xje27ih.x18dplov.xozx76t.x14ug900.xngnso2.xcgk4ki:hover /* group name in details info */,
 div.x1c4vz4f.xs83m0k.xdl72j9.x1g77sc7.x78zum5.xozqiw3.x1oa3qoh.x12fk4p8.xeuugli.x2lwn1j.x1nhvcw1.xdt5ytf.x6s0dn4 > div.x1evy7pa.x1anpbxc > span:hover /* user phone number in details info */,
 div.x1evy7pa.x1kgmq87.x2b8uid:hover /* group short details in details info */,
 div.xlm9qay.x1s688f.x1e56ztr:hover /* business user name in details info */,
@@ -85,7 +87,8 @@ div.xkhd6sd._ajxt > ._ajxu > div:hover /* business phone number in details info 
 div._ak1d > div:first-child > div:first-child > :not(:first-child):hover /* user/group name in starred message list */
 {
   filter: blur(0) grayscale(0);
-  transition-delay: 0.3s;
+  transition-delay: 0.1s;
+  transition-duration: 0.15s;
 }
 
 /* updated wa version (v2.3000.xx) */

@@ -25,7 +25,8 @@ div.x1conndi:hover /* media thumb in overlay view and details panel */,
 div.x4t2iug:hover /* media thumb in media gallery panel */
 {
   filter: blur(0) grayscale(0);
-  transition-delay: 0.3s;
+  transition-delay: 0.1s;
+  transition-duration: 0.15s;
 }
 
 /* updated wa version (v2.3000.xx) */

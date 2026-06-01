@@ -20,5 +20,6 @@ div._ak1l:hover /* message text input */,
 div._ak1r:hover /* message text input */
 {
   filter: grayscale(0) opacity(1);
-  transition-delay: 0.3s;
+  transition-delay: 0.1s;
+  transition-duration: 0.15s;
 }

@@ -41,7 +41,8 @@ div._amk4 ._am2s:hover /* sticker message */,
 span._amk7:hover /* Tail-out */
 {
   filter: blur(0) grayscale(0);
-  transition-delay: 0.3s;
+  transition-delay: 0.1s;
+  transition-duration: 0.15s;
 }
 
 /* former wa version (v2.2412.xx) */

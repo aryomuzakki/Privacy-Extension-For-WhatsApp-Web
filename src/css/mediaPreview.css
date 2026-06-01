@@ -22,7 +22,7 @@
 
 /* updated wa version (v2.3000.xx) */
 div._amk4 > ._amk6 :is(div, button)[role="button"][class]:not(.x13yyeie, .x1dxgm4b, .x7fhd9j, ._ak3u, ._aju3, [data-js-context-icon], .x1a06ls3, .x6ikm8r.x10wlt62.xlyipyv, .x1bvqhpb.x12lo8hy, .xo1mcw5.x1xlr1w8, ._ahy-, :has(span.xhslqc4)) /* media messages in chat panel and contact attachment button */,
-div._amk6 div._ahz2 /* user profile pic in contact attachment */,
+div._amk6 div.x1okw0bk.x1yh7se0 div.x1n2onr6.x1c9tyrk.xeusxvb.x1pahc9y.x1ertn4p /* user profile pic in contact attachment */,
 div._amk6 div.x2lah0s.x1c4vz4f.xdl72j9.x1yh7se0 /* user profile pic in multiple contact attachment */,
 div._amk6 div._ahz1 /* user name in contact attachment */,
 div._amk6 div.xs83m0k.x1iyjqo2.xdl72j9.x18wx58x.x6ikm8r.x10wlt62 /* user name in multiple contacts attachment */,
@@ -68,7 +68,7 @@ div._aju3:hover ._agtn > div /* media in quoted message */,
 div._aju3:hover .x1ozewix /* icon for filename in quoted message */,
 div._aju3:hover .x1ozewix + span /* filename in quoted message */,
 div._aju3:hover span._ajxd._ajxk /* sticker in quoted message */,
-div._amk6 div._ahz2:hover /* user profile pic in contact attachment */,
+div._amk6 div.x1okw0bk.x1yh7se0 div.x1n2onr6.x1c9tyrk.xeusxvb.x1pahc9y.x1ertn4p:hover /* user profile pic in contact attachment */,
 div._amk6 div.x2lah0s.x1c4vz4f.xdl72j9.x1yh7se0:hover /* user profile pic in multiple contact attachment */,
 div._amk6 div._ahz1:hover /* user name in contact attachment */,
 div._amk6 div.xs83m0k.x1iyjqo2.xdl72j9.x18wx58x.x6ikm8r.x10wlt62:hover /* user name in multiple contacts attachment */,
@@ -82,7 +82,8 @@ div._ak3i:hover /* media preview thumb in send media */,
 div._ajwt .xm0mufa > div:hover /* document filename in send media */
 {
   filter: blur(0) grayscale(0);
-  transition-delay: 0.3s;
+  transition-delay: 0.1s;
+  transition-duration: 0.15s;
 }
 
 
