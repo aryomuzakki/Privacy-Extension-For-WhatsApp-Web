@@ -88,8 +88,7 @@ body:hover div._ak3i /* media preview thumb in send media */,
 body:hover div._ajwt .xm0mufa > div /* document filename in send media */,
 
 /* messages */
-body:hover div._amk4 > ._amk6:not(:has(span._ajxd._ajxk ._ajxj._ajxd)) /* normal message text */,
-body:hover span._ajxd._ajxk:has(._ajxj._ajxd) /* sticker message */,
+body:hover div[data-testid=msg-container] /* normal message text */,
 
 /* messagesPreview */
 body:hover div.xjbqb8w.x1iyjqo2.x1f6kntn.x1fc57z9.x6ikm8r.x10wlt62.x1yc453h.xlyipyv.xuxw1ft.xo1l8bm /* message preview */,

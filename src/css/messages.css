@@ -9,9 +9,7 @@
 ._1BOF7 ._1sykI /*blue info bar*/,
 
 /* updated wa version (v2.3000.xx) */
-div._amk4 > ._amk6:not(:has(span._ajxd._ajxk ._ajxj._ajxd)) /* normal message text */,
-span._ajxd._ajxk:has(._ajxj._ajxd) /* sticker message */,
-span._amk7 /* Tail-out */
+div[data-testid=msg-container] /* normal message text */
 {
   filter: blur(var(--ms-blur)) grayscale(1);
   transition-delay: 0s;
@@ -31,8 +29,7 @@ span._amk7 /* Tail-out */
 }
 
 /* updated wa version (v2.3000.xx) */
-div._amk4 > ._amk6:not(:has(span._ajxd._ajxk ._ajxj._ajxd)) /* normal message text more padding */,
-span._ajxd._ajxk:has(._ajxj._ajxd) /* sticker message */
+div[data-testid=msg-container] /* normal message text more padding */
 {
   padding-right: 36px !important; /* extra right padding to prevent covered text */
 }
@@ -45,9 +42,7 @@ span._ajxd._ajxk:has(._ajxj._ajxd) /* sticker message */
 ._1BOF7 ._1sykI:hover /*blue info bar*/,
 
 /* updated wa version (v2.3000.xx) */
-div._amk4 > ._amk6:not(:has(span._ajxd._ajxk ._ajxj._ajxd)):hover /* normal message text */,
-span._ajxd._ajxk:has(._ajxj._ajxd):hover /* sticker message */,
-span._amk7:hover /* Tail-out */
+div[data-testid=msg-container]:hover /* normal message text */
 {
   filter: blur(0) grayscale(0);
   transition-delay: 0.1s;
@@ -58,14 +53,14 @@ span._amk7:hover /* Tail-out */
 ._1qNn2 ._1nCcB /*set pseudo background on sticker*/,
 
 /* updated wa version (v2.3000.xx) */
-span._ajxd._ajxk ._ajxj._ajxd /* set pseudo background on sticker */
+div[data-testid=msg-container] span._ajxd._ajxk ._ajxj._ajxd /* set pseudo background on sticker */
 {
   background-color: var(--incoming-background) !important;
   border-radius: 7.5px !important;
   box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13) !important;
 }
 
-span._ajxd._ajxk:has(._ajxj._ajxd):hover ._ajxj._ajxj._ajxd /* set pseudo background on sticker */
+div[data-testid=msg-container]:has(span._ajxd._ajxk ._ajxj._ajxd):hover span._ajxd._ajxk ._ajxj._ajxd /* set pseudo background on sticker */
 {
   background-color: transparent !important;
   border-radius: 0 !important;

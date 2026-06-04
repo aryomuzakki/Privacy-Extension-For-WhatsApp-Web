@@ -90,8 +90,7 @@ div._ak3i:hover /* media preview thumb in send media */,
 div._ajwt .xm0mufa > div:hover /* document filename in send media */,
 
 /* messages */
-div._amk4 > ._amk6:not(:has(span._ajxd._ajxk ._ajxj._ajxd)):hover /* normal message text */,
-span._ajxd._ajxk:has(._ajxj._ajxd):hover /* sticker message */,
+div[data-testid=msg-container]:hover /* normal message text */,
 
 /* messagesPreview */
 div.xjbqb8w.x1iyjqo2.x1f6kntn.x1fc57z9.x6ikm8r.x10wlt62.x1yc453h.xlyipyv.xuxw1ft.xo1l8bm:hover /* message preview */,
