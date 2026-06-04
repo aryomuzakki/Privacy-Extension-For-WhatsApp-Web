@@ -1,6 +1,7 @@
-/* Privacy Extension for WhatsApp(TM) Web                       */
-/* Copyright (c) 2024 Lukas Lenhardt - lukaslen.com             */
-/* Released under the MIT license, see LICENSE file for details */
+/* Privacy for WhatsApp Web (Auto Blur WA)                           */
+/* Original Copyright (c) 2024 Lukas Lenhardt - lukaslen.com         */
+/* Fork & Maintenance Copyright (c) 2026 M Aryo Muzakki - muzakki.id */
+/* Released under the MIT license, see LICENSE file for details      */
 
 /* former wa version (v2.2412.xx) */
 /* mediaGallery */
@@ -80,15 +81,15 @@ body:hover div._amk6 div.x1lxpwgx.xzueoph.xw01apr > div > img:not(.emoji):not(._
 body:hover div._amk6 div.x1lxpwgx.xzueoph.xw01apr > div > div:has(img:not(.emoji)):not(._aju3) /* link preview (image) in chat panel */,
 body:hover div._amk6 div.x1lxpwgx.xzueoph.xw01apr button:has(img) /* link preview (video) in chat panel */,
 body:hover div._ak15 > ._ahwq /* some link preview in link list panel */,
-body:hover span._ajxd._ajxk ._ajxj._ajxd /* sticker in chat panel */,
+body:hover span._ajxd._ajxk:has(._ajxj._ajxd) /* sticker in chat panel */,
 body:hover div.xz9dduz > div:first-child /* maps / location */,
 body:hover div._ajwt > div:first-child > div:nth-child(2) > div /* media preview in send media */,
 body:hover div._ak3i /* media preview thumb in send media */,
 body:hover div._ajwt .xm0mufa > div /* document filename in send media */,
 
 /* messages */
-body:hover div._amk4 > ._amk6 /* normal message text */,
-body:hover div._amk4 ._am2s /* sticker message */,
+body:hover div._amk4 > ._amk6:not(:has(span._ajxd._ajxk ._ajxj._ajxd)) /* normal message text */,
+body:hover span._ajxd._ajxk:has(._ajxj._ajxd) /* sticker message */,
 
 /* messagesPreview */
 body:hover div.xjbqb8w.x1iyjqo2.x1f6kntn.x1fc57z9.x6ikm8r.x10wlt62.x1yc453h.xlyipyv.xuxw1ft.xo1l8bm /* message preview */,

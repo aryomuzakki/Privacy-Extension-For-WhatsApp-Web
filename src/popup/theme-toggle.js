@@ -5,7 +5,7 @@ showEdgeElements = (show) => {
   const topEdge = document.querySelector("#mainContent > .wrapper > .top-edge");
   const bottomEdge = document.querySelector("#mainContent > .wrapper > .bottom-edge");
   if (!topEdge || !bottomEdge) {
-    console.warn("Edge elements not found");
+    // console.warn("Edge elements not found");
     return;
   }
   if (show) {

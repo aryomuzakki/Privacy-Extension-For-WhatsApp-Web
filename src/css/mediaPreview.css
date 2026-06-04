@@ -1,6 +1,7 @@
-/* Privacy Extension for WhatsApp(TM) Web                       */
-/* Copyright (c) 2024 Lukas Lenhardt - lukaslen.com             */
-/* Released under the MIT license, see LICENSE file for details */
+/* Privacy for WhatsApp Web (Auto Blur WA)                           */
+/* Original Copyright (c) 2024 Lukas Lenhardt - lukaslen.com         */
+/* Fork & Maintenance Copyright (c) 2026 M Aryo Muzakki - muzakki.id */
+/* Released under the MIT license, see LICENSE file for details      */
 
 /* former wa version (v2.2412.xx) */
 ._2AOIt div.ktbp76dp div[role="button"] img /*image landscape*/,
@@ -35,7 +36,7 @@ div._amk6 div.x1lxpwgx.xzueoph.xw01apr > div > img:not(.emoji):not(._aju3) /* li
 div._amk6 div.x1lxpwgx.xzueoph.xw01apr > div > div:has(img:not(.emoji)):not(._aju3) /* link preview (image) in chat panel */,
 div._amk6 div.x1lxpwgx.xzueoph.xw01apr button:has(img) /* link preview (video) in chat panel */,
 div._ak15 > ._ahwq /* some link preview in link list panel */,
-span._ajxd._ajxk ._ajxj._ajxd /* sticker in chat panel */,
+span._ajxd._ajxk:has(._ajxj._ajxd) /* sticker in chat panel */,
 div.xz9dduz > div:first-child /* maps / location */,
 div._ajwt > div:first-child > div:nth-child(2) > div /* media preview in send media */,
 div._ak3i /* media preview thumb in send media */,
@@ -79,7 +80,7 @@ div._amk6 div.x1lxpwgx.xzueoph.xw01apr > div > img:not(.emoji):not(._aju3):hover
 div._amk6 div.x1lxpwgx.xzueoph.xw01apr > div > div:has(img:not(.emoji)):not(._aju3):hover /* link preview (image) in chat panel */,
 div._amk6 div.x1lxpwgx.xzueoph.xw01apr button:has(img):hover /* link preview (video) in chat panel */,
 div._ak15 > ._ahwq:hover /* some link preview in link list panel */,
-span._ajxd._ajxk ._ajxj._ajxd:hover /* sticker in chat panel */,
+span._ajxd._ajxk:has(._ajxj._ajxd):hover /* sticker in chat panel */,
 div.xz9dduz > div:first-child:hover /* maps / location */,
 div._ajwt > div:first-child > div:nth-child(2) > div:hover /* media preview in send media */,
 div._ak3i:hover /* media preview thumb in send media */,
@@ -102,3 +103,9 @@ span._ajxd._ajxk ._ajxj._ajxd /*set pseudo background on sticker*/
   box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13) !important;
 }
 
+span._ajxd._ajxk:has(._ajxj._ajxd):hover ._ajxj._ajxd /* set pseudo background on sticker */
+{
+  background-color: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
