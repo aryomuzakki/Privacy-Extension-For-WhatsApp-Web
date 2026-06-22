@@ -1,3 +1,6 @@
+> **⚠️ This project is no longer actively maintained.**
+> Development continues at [privacy-whatsapp-web-auto-blur](https://github.com/aryomuzakki/privacy-whatsapp-web-auto-blur), which includes future updates and improvements.
+
 # Privacy Extension For WhatsApp™ Web ![Logo](https://github.com/LukasLen/Privacy-Extension-For-WhatsApp-Web/blob/master/src/images/icon32.png?raw=true)
 [![GitHub license](https://img.shields.io/github/license/LukasLen/Privacy-Extension-For-WhatsApp-Web.svg)](https://github.com/LukasLen/Privacy-Extension-For-WhatsApp-Web/blob/master/LICENSE) [![Chrome Web Store](https://img.shields.io/chrome-web-store/users/jbojhlhhggfmmkpefknmbdhlaghehini.svg)](https://chrome.google.com/webstore/detail/privacy-extension-for-wha/jbojhlhhggfmmkpefknmbdhlaghehini)
 
