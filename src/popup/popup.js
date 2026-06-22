@@ -21,12 +21,7 @@ document.querySelectorAll('[data-localetitle]').forEach(e => {
   e.title = browser.i18n.getMessage(e.dataset.localetitle);
 });
 
-let switches = document.querySelectorAll("input[type='checkbox']");
-
 // Track switch changes and save settings
-switches.forEach((checkbox) => {
-  checkbox.addEventListener('change', saveSettings);
-});
 function saveSettings() {
   let id = this.dataset.style;
   let checked = this.checked;
@@ -46,23 +41,126 @@ function saveSettings() {
     browser.storage.sync.set(result);
   });
 }
+const switches = document.querySelectorAll("input[type='checkbox']");
+switches.forEach((checkbox) => {
+  checkbox.addEventListener('change', saveSettings);
+});
 
 // toggle open/close blur amount settings
-const showBlurSettings = (ev) => {
-  ev.currentTarget.classList.toggle("active");
-  ev.currentTarget.parentNode.querySelector(".collapsible").classList.toggle("show");
+const onClickOutside = (targetElement, callback, once = true) => {
+  function handler(ev) {
+    if (!ev.composedPath().includes(targetElement)) {
+      callback(ev);
+      if (once) {
+        document.removeEventListener("click", handler);
+      }
+    }
+  }
+
+  setTimeout(() => {
+    document.addEventListener("click", handler);
+  }, 0);
+
+  return () => document.removeEventListener("click", handler);
 }
-const revealButtons = document.querySelectorAll(".reveal-btn");
-revealButtons.forEach((revealBtn) => {
-  revealBtn.addEventListener("click", showBlurSettings)
-})
 
-// track form save/submit for variable style settings
-const forms = document.querySelectorAll("form.var-style");
+let removeOutsideListener = null;
 
-forms.forEach((form) => {
-  form.addEventListener("submit", saveFormSettings);
-})
+const togglePopup = (ev) => {
+  const popoverElement = ev.currentTarget.parentNode.querySelector(".popover");
+  const trigger = ev.currentTarget;
+
+  const closeSetting = () => {
+    trigger.classList.remove("active");
+    popoverElement.setAttribute("aria-hidden", "true");
+    popoverElement.style.maxHeight = null;
+  }
+
+  if (!trigger.classList.contains("active")) {
+    trigger.classList.add("active");
+    popoverElement.removeAttribute("aria-hidden");
+    popoverElement.style.maxHeight = popoverElement.scrollHeight + "px";
+    removeOutsideListener = onClickOutside(ev.currentTarget.parentNode.querySelector(".popover"), (ev) => {
+      closeSetting();
+    });
+  } else {
+    closeSetting();
+    removeOutsideListener();
+  }
+}
+
+const cancelAdvancedSetting = (ev) => {
+  const popoverElement = ev.currentTarget.parentNode;
+
+  browser.storage.sync.get([settingsIdentifier]).then((result) => {
+    if (!result.hasOwnProperty(settingsIdentifier)) {
+      browser.runtime.reload();
+      return;
+    }
+    popoverElement.querySelectorAll("input[type='number']").forEach(input => {
+      const varName = input.dataset.varName;
+      input.value = parseInt(
+        varName === "itBlur"
+          ? result.settings?.blurOnIdle?.idleTimeout || 15
+          : result.settings.varStyles[varName]
+      );
+    });
+
+    popoverElement.parentNode.querySelector(".trigger-btn.active")?.classList.remove("active");
+    popoverElement.setAttribute("aria-hidden", "true");
+    popoverElement.style.maxHeight = null;
+    removeOutsideListener?.();
+  })
+}
+
+const triggerButtons = document.querySelectorAll(".trigger-btn");
+triggerButtons.forEach((triggerBtn) => {
+  triggerBtn.addEventListener("click", togglePopup);
+});
+const cancelButtons = document.querySelectorAll(".cancel-btn");
+cancelButtons.forEach((cancelBtn) => {
+  cancelBtn.addEventListener("click", cancelAdvancedSetting);
+});
+
+// toast utility
+const showToast = (message, duration = 3000, persistent = false) => {
+  const container = document.getElementById('toast-container');
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+
+  const p = document.createElement('p');
+  p.className = 'msg';
+  p.textContent = message;
+  toast.appendChild(p);
+
+  if (persistent) {
+    const btn = document.createElement('button');
+    btn.className = 'toast-close-btn';
+    btn.textContent = '×';
+    toast.appendChild(btn);
+  }
+
+  container.appendChild(toast);
+
+  const removeToast = (toast) => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 300);
+  }
+
+  setTimeout(() => toast.classList.add('show'), 10);
+
+  if (!persistent) {
+    setTimeout(() => {
+      removeToast(toast);
+    }, duration < 0 ? 3000 : duration);
+  } else {
+    toast.querySelector(".toast-close-btn").addEventListener("click", () => {
+      removeToast(toast);
+    })
+  }
+}
+
+// track form save/submit for advanced settings (variable style settings)
 function saveFormSettings(ev) {
   ev.preventDefault();
   const [key, val] = Object.entries(Object.fromEntries(new FormData(ev.target)))[0];
@@ -78,8 +176,15 @@ function saveFormSettings(ev) {
       result.settings.varStyles[key] = val + "px";
     }
     browser.storage.sync.set(result);
+
+    showToast(browser.i18n.getMessage('toastSaved'));
   });
 }
+const forms = document.querySelectorAll("form.var-style");
+forms.forEach((form) => {
+  form.addEventListener("submit", saveFormSettings);
+})
+
 
 // Load settings and update switches
 browser.storage.sync.get([settingsIdentifier]).then((result) => {
@@ -109,5 +214,5 @@ browser.storage.sync.get([settingsIdentifier]).then((result) => {
       numInput.value = parseInt(result.settings.varStyles[varName]);
     }
   })
-  
+
 });
