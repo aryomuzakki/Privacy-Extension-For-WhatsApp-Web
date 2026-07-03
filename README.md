@@ -1,12 +1,13 @@
-> **⚠️ This project is no longer actively maintained.**
-> Development continues at [privacy-whatsapp-web-auto-blur](https://github.com/aryomuzakki/privacy-whatsapp-web-auto-blur), which includes future updates and improvements.
+> **Note on Maintenance**: This is the **Classic / Original** version of the Privacy Extension For WhatsApp™ Web. It is updated to **v3.4.3** with all compatibility fixes for WhatsApp Web layout changes. Future bug fixes will continue to be updated here.
+>
+> If you want advanced settings, themes, and new features, check out the modern continuation fork: [Privacy for WhatsApp Web (Auto Blur WA)](https://github.com/aryomuzakki/privacy-whatsapp-web-auto-blur) (website: [blurwa.muzakki.id](https://blurwa.muzakki.id)).
 
-# Privacy Extension For WhatsApp™ Web ![Logo](https://github.com/LukasLen/Privacy-Extension-For-WhatsApp-Web/blob/master/src/images/icon32.png?raw=true)
-[![GitHub license](https://img.shields.io/github/license/LukasLen/Privacy-Extension-For-WhatsApp-Web.svg)](https://github.com/LukasLen/Privacy-Extension-For-WhatsApp-Web/blob/master/LICENSE) [![Chrome Web Store](https://img.shields.io/chrome-web-store/users/jbojhlhhggfmmkpefknmbdhlaghehini.svg)](https://chrome.google.com/webstore/detail/privacy-extension-for-wha/jbojhlhhggfmmkpefknmbdhlaghehini)
+# Privacy Extension For WhatsApp™ Web ![Logo](https://github.com/aryomuzakki/Privacy-Extension-For-WhatsApp-Web/blob/master/src/images/icon32.png?raw=true)
+[![GitHub license](https://img.shields.io/github/license/aryomuzakki/Privacy-Extension-For-WhatsApp-Web.svg)](https://github.com/aryomuzakki/Privacy-Extension-For-WhatsApp-Web/blob/master/LICENSE) [![Chrome Web Store](https://img.shields.io/chrome-web-store/users/jbojhlhhggfmmkpefknmbdhlaghehini.svg)](https://chrome.google.com/webstore/detail/privacy-extension-for-wha/jbojhlhhggfmmkpefknmbdhlaghehini)
 
 <p align="center">
-  <img width="48%" title="WhatsApp™ Web with the extension" alt="WhatsApp™ Web with the extension" src="https://github.com/LukasLen/Privacy-Extension-For-WhatsApp-Web/blob/master/screenshots/PFWA_Header.png?raw=true">
-  <img width="48%" title="WhatsApp™ Web with the extension" alt="WhatsApp™ Web with the extension" src="https://github.com/LukasLen/Privacy-Extension-For-WhatsApp-Web/blob/master/screenshots/PFWA_Settings.png?raw=true">
+  <img width="48%" title="WhatsApp™ Web with the extension" alt="WhatsApp™ Web with the extension" src="https://github.com/aryomuzakki/Privacy-Extension-For-WhatsApp-Web/blob/master/screenshots/PFWA_Header.png?raw=true">
+  <img width="48%" title="WhatsApp™ Web with the extension" alt="WhatsApp™ Web with the extension" src="https://github.com/aryomuzakki/Privacy-Extension-For-WhatsApp-Web/blob/master/screenshots/PFWA_Settings.png?raw=true">
 </p>
 
 To increase privacy in public spaces the Privacy Extension For WhatsApp™ Web blurs your messages. Your messages and other content only reveals upon hovering over with your mouse cursor. Additionally you can quickly toggle all effects by using a keyboard shortcut or by clicking the toggle button in the extension menu.
@@ -42,7 +43,7 @@ Official Chrome webstore page: [https://chrome.google.com/webstore/detail/privac
 Official Firefox addons page: [https://addons.mozilla.org/firefox/addon/privacy-extension-for-whatsapp/](https://addons.mozilla.org/firefox/addon/privacy-extension-for-whatsapp/)
 
 ### For development purposes on Chrome
-- Download the newest release [here](https://github.com/LukasLen/Privacy-Extension-For-WhatsApp-Web/releases) and unzip it
+- Download the newest release [here](https://github.com/aryomuzakki/Privacy-Extension-For-WhatsApp-Web/releases) and unzip it
 - Navigate to [chrome://extensions](chrome://extensions)
 - Activate the developer mode (on the top right)
 - Click on "Load Unpacked"
@@ -50,18 +51,18 @@ Official Firefox addons page: [https://addons.mozilla.org/firefox/addon/privacy-
 - Check back here for new releases
 
 ## Issues and Feature Requests
-If you have a feature request or encountered a problem, please create a new issue under this link: [https://github.com/LukasLen/Privacy-Extension-For-WhatsApp-Web/issues](https://github.com/LukasLen/Privacy-Extension-For-WhatsApp-Web/issues)
+If you have a feature request or encountered a problem, please create a new issue under this link: [https://github.com/aryomuzakki/Privacy-Extension-For-WhatsApp-Web/issues](https://github.com/aryomuzakki/Privacy-Extension-For-WhatsApp-Web/issues)
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/LukasLen/Privacy-Extension-For-WhatsApp-Web/blob/master/LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/aryomuzakki/Privacy-Extension-For-WhatsApp-Web/blob/master/LICENSE) file for details.
 
 ### Acknowledgments
+- Original project and design by [Lukas Lenhardt](https://github.com/LukasLen)
 - [Eye Icon](https://www.iconfinder.com/icons/1608687/eye_slash_icon)
 
-
 ---
-> This extension does not collect information about you or your messages. We only communicate with our server to display information about problems or updates. Visit the privacy policy to learn more.
+> This extension does not collect information about you or your messages. Visit the [privacy policy](https://pfwa.muzakki.id/privacy-policy/) to learn more.
 >
-> ***Disclaimer:*** *WhatsApp is a trademark of WhatsApp Inc., registered in the U.S. and other countries. This extension is an independent project developed by Lukas Lenhardt and has no relationship to WhatsApp or WhatsApp Inc.*
+> ***Disclaimer:*** *WhatsApp is a trademark of WhatsApp LLC, registered in the U.S. and other countries. This extension is an independent project developed by Lukas Lenhardt, now maintained by [M Aryo Muzakki](https://muzakki.id), and has no relationship to WhatsApp or WhatsApp LLC.*
 >
-> [*Legal and Privacy notice*](https://lukaslen.com/legal)
+> [*Legal and Privacy notice*](https://pfwa.muzakki.id/privacy-policy/)

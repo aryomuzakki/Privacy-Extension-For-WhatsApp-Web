@@ -11,6 +11,9 @@
     "extensionToggle": {
         "message": "Ein-/Ausschalten"
     },
+    "extensionToggleDescription": {
+        "message": "Schaltet die Erweiterung ein oder aus"
+    },
     "extensionSettings": {
         "message": "Einstellungen"
     },
@@ -74,8 +77,20 @@
     "toggleBlurOnIdleDescription": {
         "message": "Verstecke WhatsApp nach einer gewissen Zeit, sobald keine Maus/Tastatur Eingabe erkannt wird."
     },
+    "toggleDarkMode": {
+        "message": "Dunkelmodus umschalten"
+    },
+    "openAdvancedSettings": {
+        "message": "Erweiterte Einstellungen öffnen"
+    },
+    "cancel": {
+        "message": "Abbrechen"
+    },
     "resetValue": {
         "message": "Zurücksetzen"
+    },
+    "toastSaved":{
+        "message": "Gespeichert!"
     },
     "blurInputLabel": {
         "message": "Intensität"
@@ -129,7 +144,7 @@
         "message": "Fehlerberichte & Vorschläge"
     },
     "footerBugReportsDescription": {
-        "message": "Wenn Sie Probleme haben oder einen Funktionswunsch haben, senden Sie bitte eine E-Mail: contact@lukaslen.com"
+        "message": "Wenn Sie Probleme haben oder einen Funktionswunsch haben, senden Sie bitte eine E-Mail an support@pfwa.muzakki.id oder erstellen Sie ein Ticket in unserem GitHub-Repository."
     },
     "footerAuthor": {
         "message": "Autor"
