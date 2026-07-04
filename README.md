@@ -1,6 +1,6 @@
 > **Note on Maintenance**: This is the **Classic / Original** version of the Privacy Extension For WhatsApp™ Web. It is updated to **v3.4.3** with all compatibility fixes for WhatsApp Web layout changes. Future bug fixes will continue to be updated here.
 >
-> If you want advanced settings, themes, and new features, check out the modern continuation fork: [Privacy for WhatsApp Web (Auto Blur WA)](https://github.com/aryomuzakki/privacy-whatsapp-web-auto-blur) (website: [blurwa.muzakki.id](https://blurwa.muzakki.id)).
+> If you want advanced settings, and new features, check out the modern continuation fork: [Privacy for WhatsApp Web (Auto Blur WA)](https://github.com/aryomuzakki/privacy-whatsapp-web-auto-blur) (website: [blurwa.muzakki.id](https://blurwa.muzakki.id)).
 
 # Privacy Extension For WhatsApp™ Web ![Logo](https://github.com/aryomuzakki/Privacy-Extension-For-WhatsApp-Web/blob/master/src/images/icon32.png?raw=true)
 [![GitHub license](https://img.shields.io/github/license/aryomuzakki/Privacy-Extension-For-WhatsApp-Web.svg)](https://github.com/aryomuzakki/Privacy-Extension-For-WhatsApp-Web/blob/master/LICENSE) [![Chrome Web Store](https://img.shields.io/chrome-web-store/users/jbojhlhhggfmmkpefknmbdhlaghehini.svg)](https://chrome.google.com/webstore/detail/privacy-extension-for-wha/jbojhlhhggfmmkpefknmbdhlaghehini)
