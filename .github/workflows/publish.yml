@@ -39,20 +39,20 @@ jobs:
 
       - name: Upload to Chrome Web Store
         if: ${{ env.CHROME_CLIENT_ID != '' && env.CHROME_EXTENSION_ID != '' }}
-        uses: chrome-stats/chrome-extension-upload-action@v2
+        uses: mnao305/chrome-extension-upload@v2.2.1
         with:
+          file-path: 'v${{ github.ref_name }}-chrome-pfwa.zip'
           extension-id: ${{ secrets.CHROME_EXTENSION_ID }}
-          zip-path: 'v${{ github.ref_name }}-chrome-pfwa.zip'
           client-id: ${{ secrets.CHROME_CLIENT_ID }}
           client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
           refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
 
-      - name: Upload to Firefox Add-ons (AMO)
+      - name: Lint & Upload to Firefox Add-ons (AMO)
         if: ${{ env.AMO_JWT_ISSUER != '' && env.AMO_ADDON_ID != '' }}
-        uses: w3bdesign/web-ext-submit-action@v2
-        with:
-          channel: listed
-          addon-id: ${{ secrets.AMO_ADDON_ID }}
-          source-file: 'v${{ github.ref_name }}-firefox-pfwa.zip'
-          api-key: ${{ secrets.AMO_JWT_ISSUER }}
-          api-secret: ${{ secrets.AMO_JWT_SECRET }}
+        run: |
+          bunx web-ext lint --source-dir "v${{ github.ref_name }}-firefox-pfwa.zip"
+          bunx web-ext sign \
+            --upload-file "v${{ github.ref_name }}-firefox-pfwa.zip" \
+            --channel listed \
+            --api-key "${{ secrets.AMO_JWT_ISSUER }}" \
+            --api-secret "${{ secrets.AMO_JWT_SECRET }}"
