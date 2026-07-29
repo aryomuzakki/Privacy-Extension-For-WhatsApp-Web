@@ -53,6 +53,23 @@ Official Firefox addons page: [https://addons.mozilla.org/firefox/addon/privacy-
 ## Issues and Feature Requests
 If you have a feature request or encountered a problem, please create a new issue under this link: [https://github.com/aryomuzakki/Privacy-Extension-For-WhatsApp-Web/issues](https://github.com/aryomuzakki/Privacy-Extension-For-WhatsApp-Web/issues)
 
+### Packaging Builds (Chrome & Firefox)
+
+To package the extension into ready-to-publish `.zip` files for Chrome and Firefox:
+
+- Ensure [Bun](https://bun.sh/) or [Node.js](https://nodejs.org/) is installed.
+- Run the build script in the repository root:
+  ```bash
+  bun build.js
+  # or using node
+  node build.js
+  ```
+- The script automatically creates:
+  - **Chrome Build**: `v[version]-chrome-[prefix].zip` containing the Chrome `manifest.json`.
+  - **Firefox Build**: `v[version]-firefox-[prefix].zip` with `manifest_firefox.json` automatically renamed to `manifest.json`.
+- The resulting `.zip` files can be loaded directly for testing or uploaded to the Chrome Web Store and Firefox Add-ons (AMO) developer consoles.
+- For fully automated building, release creation, and store publishing via GitHub Actions, see the [Automated Publishing Guide](AUTOMATED_PUBLISHING.md).
+
 ## License
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/aryomuzakki/Privacy-Extension-For-WhatsApp-Web/blob/master/LICENSE) file for details.
 
