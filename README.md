@@ -1,8 +1,9 @@
-> **Note on Maintenance**: This is the **Classic / Original** version of the Privacy Extension For WhatsApp™ Web. It is updated to **v3.4.3** with all compatibility fixes for WhatsApp Web layout changes. Future bug fixes will continue to be updated here.
+> **Note on Maintenance**: This is the **Classic / Original** version of the Privacy Extension For WhatsApp™ Web. It is updated to **v3.4.4** with all compatibility fixes for WhatsApp Web layout changes. Future bug fixes will continue to be updated here.
 >
 > If you want advanced settings, and new features, check out the modern continuation fork: [Privacy for WhatsApp Web (Auto Blur WA)](https://github.com/aryomuzakki/privacy-whatsapp-web-auto-blur) (website: [blurwa.muzakki.id](https://blurwa.muzakki.id)).
 
 # Privacy Extension For WhatsApp™ Web ![Logo](https://github.com/aryomuzakki/Privacy-Extension-For-WhatsApp-Web/blob/master/src/images/icon32.png?raw=true)
+
 [![GitHub license](https://img.shields.io/github/license/aryomuzakki/Privacy-Extension-For-WhatsApp-Web.svg)](https://github.com/aryomuzakki/Privacy-Extension-For-WhatsApp-Web/blob/master/LICENSE) [![Chrome Web Store](https://img.shields.io/chrome-web-store/users/jbojhlhhggfmmkpefknmbdhlaghehini.svg)](https://chrome.google.com/webstore/detail/privacy-extension-for-wha/jbojhlhhggfmmkpefknmbdhlaghehini)
 
 <p align="center">
@@ -12,7 +13,34 @@
 
 To increase privacy in public spaces the Privacy Extension For WhatsApp™ Web blurs your messages. Your messages and other content only reveals upon hovering over with your mouse cursor. Additionally you can quickly toggle all effects by using a keyboard shortcut or by clicking the toggle button in the extension menu.
 
-**Customize it**
+---
+
+<details>
+<summary>Table of Contents (Click to Show/Hide)</summary>
+
+---
+
+## Table of Contents
+
+- [Customize it](#customize-it)
+  - [Quick Toggle](#quick-toggle)
+- [Installation](#installation)
+  - [Chrome](#chrome)
+  - [Firefox](#firefox)
+  - [Manual Load](#manual-load)
+- [Issues and Feature Requests](#issues-and-feature-requests)
+- [Development Guide](#development-guide)
+  - [Quickstart for Chrome](#quickstart-for-chrome)
+  - [Quickstart for Firefox](#quickstart-for-firefox)
+  - [Packaging Builds (Chrome & Firefox)](#packaging-builds-chrome--firefox)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+
+</details>
+
+---
+
+## Customize it
 
 It adapts to your needs by letting you decide which elements you want to blur. Your options:
 
@@ -26,7 +54,7 @@ It adapts to your needs by letting you decide which elements you want to blur. Y
 - No transition delay: *Allows you to turn off the delay before revealing an item on hover.*
 - Unblur all on app hover: *Unblurs all elements when you hover over the WhatsApp Web app.*
 
-**Quick Toggle**
+### Quick Toggle
 
 You can quickly toggle the blur in the settings or with a keyboard shortcut (Default: Alt+X).
 To change this navigate to:
@@ -34,24 +62,58 @@ To change this navigate to:
  - Firefox: [about:addons](about:addons) -> Settings icon on the top right -> Manage Extension Shortcuts
 
 ## Installation
+
 Available for both Chrome and Firefox.
 
 ### Chrome
+
 Official Chrome webstore page: [https://chrome.google.com/webstore/detail/privacy-extension-for-wha/jbojhlhhggfmmkpefknmbdhlaghehini](https://chrome.google.com/webstore/detail/privacy-extension-for-wha/jbojhlhhggfmmkpefknmbdhlaghehini)
 
 ### Firefox
+
 Official Firefox addons page: [https://addons.mozilla.org/firefox/addon/privacy-extension-for-whatsapp/](https://addons.mozilla.org/firefox/addon/privacy-extension-for-whatsapp/)
 
-### For development purposes on Chrome
-- Download the newest release [here](https://github.com/aryomuzakki/Privacy-Extension-For-WhatsApp-Web/releases) and unzip it
+### Manual Load
+
+If you prefer to load the extension manually without using the web stores:
+
+1. Download the newest release [here](https://github.com/aryomuzakki/Privacy-Extension-For-WhatsApp-Web/releases) and unzip it.
+2. For **Chrome**:
+   - Navigate to [chrome://extensions](chrome://extensions)
+   - Activate the developer mode (on the top right)
+   - Click on "Load Unpacked"
+   - Select the unzipped `/src` folder (this folder has to be persistent so you might want to keep it somewhere where you won't delete it)
+3. For **Firefox**:
+   - Navigate to [about:debugging#/runtime/this-firefox](about:debugging#/runtime/this-firefox)
+   - Click on "Load Temporary Add-on..."
+   - Select the `manifest.json` file from your unzipped folder
+4. Check back on the releases page for new updates
+
+## Issues and Feature Requests
+
+If you have a feature request or encountered a problem, please create a new issue under this link: [https://github.com/aryomuzakki/Privacy-Extension-For-WhatsApp-Web/issues](https://github.com/aryomuzakki/Privacy-Extension-For-WhatsApp-Web/issues)
+
+## Development Guide
+
+If you want to modify the extension code or run it directly from the source repository:
+
+### Quickstart for Chrome
+
+- Clone the repository
 - Navigate to [chrome://extensions](chrome://extensions)
 - Activate the developer mode (on the top right)
 - Click on "Load Unpacked"
-- Select the "/src" folder from your unzipped download (this folder has to be persistent so you might want to keep it somewhere where you won't delete it)
-- Check back here for new releases
+- Select the `/src` folder from the cloned repository
+- You can edit the CSS and JS files in `/src`.
 
-## Issues and Feature Requests
-If you have a feature request or encountered a problem, please create a new issue under this link: [https://github.com/aryomuzakki/Privacy-Extension-For-WhatsApp-Web/issues](https://github.com/aryomuzakki/Privacy-Extension-For-WhatsApp-Web/issues)
+### Quickstart for Firefox
+
+- Clone the repository
+- Rename `src/manifest_firefox.json` into `manifest.json` (replacing the existing Chrome `manifest.json`, which you can optionally rename to `manifest_chrome.json`)
+- Navigate to [about:debugging#/runtime/this-firefox](about:debugging#/runtime/this-firefox)
+- Click on "Load Temporary Add-on..."
+- Select the `manifest.json` file from the `/src` folder
+- You can edit the CSS and JS files in `/src`.
 
 ### Packaging Builds (Chrome & Firefox)
 
@@ -71,13 +133,16 @@ To package the extension into ready-to-publish `.zip` files for Chrome and Firef
 - For fully automated building, release creation, and store publishing via GitHub Actions, see the [Automated Publishing Guide](AUTOMATED_PUBLISHING.md).
 
 ## License
+
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/aryomuzakki/Privacy-Extension-For-WhatsApp-Web/blob/master/LICENSE) file for details.
 
 ### Acknowledgments
+
 - Original project and design by [Lukas Lenhardt](https://github.com/LukasLen)
 - [Eye Icon](https://www.iconfinder.com/icons/1608687/eye_slash_icon)
 
 ---
+
 > This extension does not collect information about you or your messages. Visit the [privacy policy](https://pfwa.muzakki.id/privacy-policy/) to learn more.
 >
 > ***Disclaimer:*** *WhatsApp is a trademark of WhatsApp LLC, registered in the U.S. and other countries. This extension is an independent project developed by Lukas Lenhardt, now maintained by [M Aryo Muzakki](https://muzakki.id), and has no relationship to WhatsApp or WhatsApp LLC.*
