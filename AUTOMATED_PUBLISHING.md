@@ -90,9 +90,8 @@ Navigate to your GitHub Repository > **Settings** > **Secrets and variables** > 
 
 ### 🦊 Firefox Add-ons (AMO) Secrets
 
-| Secret Name         | Description                       | Example                                              | Where to Find                                     |
-| ------------------- | --------------------------------- | ---------------------------------------------------- | ------------------------------------------------- |
 | `AMO_ADDON_ID`      | Add-on Slug or ID                 | `privacy-for-whatsapp-web`                           | [Firefox AMO API Setup](#2-firefox-amo-api-setup) |
+| `AMO_GECKO_ID`      | Gecko Extension ID (email/UUID)   | `contact@lukaslen.com`                               | [Firefox AMO API Setup](#2-firefox-amo-api-setup) |
 | `AMO_JWT_ISSUER`    | JWT Issuer (API Key)              | `user:12345:678`                                     | [Firefox AMO API Setup](#2-firefox-amo-api-setup) |
 | `AMO_JWT_SECRET`    | JWT Secret (API Secret)           | `64_char_hex_secret...`                              | [Firefox AMO API Setup](#2-firefox-amo-api-setup) |
 | `FIREFOX_STORE_URL` | Public Firefox Add-on Listing URL | `https://addons.mozilla.org/en-US/firefox/addon/...` | [Firefox AMO API Setup](#2-firefox-amo-api-setup) |

@@ -17,6 +17,7 @@ jobs:
       CHROME_EXTENSION_ID: ${{ secrets.CHROME_EXTENSION_ID }}
       AMO_JWT_ISSUER: ${{ secrets.AMO_JWT_ISSUER }}
       AMO_ADDON_ID: ${{ secrets.AMO_ADDON_ID }}
+      AMO_GECKO_ID: ${{ secrets.AMO_GECKO_ID }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -62,7 +63,10 @@ jobs:
             const m = JSON.parse(fs.readFileSync(file, "utf8"));
             m.browser_specific_settings = m.browser_specific_settings || { gecko: {} };
             m.browser_specific_settings.gecko = m.browser_specific_settings.gecko || {};
-            m.browser_specific_settings.gecko.id = process.env.AMO_ADDON_ID;
+            if (process.env.AMO_GECKO_ID) {
+              m.browser_specific_settings.gecko.id = process.env.AMO_GECKO_ID;
+            }
+            m.browser_specific_settings.gecko.data_collection_permissions = { required: ["none"] };
             fs.writeFileSync(file, JSON.stringify(m, null, 2));
           '
           bunx web-ext sign \
@@ -70,4 +74,5 @@ jobs:
             --channel listed \
             --api-key "${{ secrets.AMO_JWT_ISSUER }}" \
             --api-secret "${{ secrets.AMO_JWT_SECRET }}"
+
 
