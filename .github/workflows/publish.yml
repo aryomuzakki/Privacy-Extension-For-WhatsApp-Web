@@ -56,8 +56,18 @@ jobs:
       - name: Lint & Upload to Firefox Add-ons (AMO)
         if: ${{ env.AMO_JWT_ISSUER != '' && env.AMO_ADDON_ID != '' }}
         run: |
+          bun -e '
+            const fs = require("fs");
+            const file = "temp_build_src/manifest.json";
+            const m = JSON.parse(fs.readFileSync(file, "utf8"));
+            m.browser_specific_settings = m.browser_specific_settings || { gecko: {} };
+            m.browser_specific_settings.gecko = m.browser_specific_settings.gecko || {};
+            m.browser_specific_settings.gecko.id = process.env.AMO_ADDON_ID;
+            fs.writeFileSync(file, JSON.stringify(m, null, 2));
+          '
           bunx web-ext sign \
             --source-dir temp_build_src \
             --channel listed \
             --api-key "${{ secrets.AMO_JWT_ISSUER }}" \
             --api-secret "${{ secrets.AMO_JWT_SECRET }}"
+
