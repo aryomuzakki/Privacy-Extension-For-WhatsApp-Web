@@ -82,7 +82,7 @@ Navigate to your GitHub Repository > **Settings** > **Secrets and variables** > 
 
 | Secret Name            | Description                           | Example                                        | Where to Find                                               |
 | ---------------------- | ------------------------------------- | ---------------------------------------------- | ----------------------------------------------------------- |
-| `CHROME_EXTENSION_ID`  | Item ID from Chrome Developer Console | `fbinmigdlajillpobajlalknjinccgem`             | [Chrome Web Store API Setup](#1-chrome-web-store-api-setup) |
+| `CHROME_EXTENSION_ID`  | Item ID from Chrome Developer Console | `jbojhlhhggfmmkpefknmbdhlaghehini`             | [Chrome Web Store API Setup](#1-chrome-web-store-api-setup) |
 | `CHROME_CLIENT_ID`     | OAuth 2.0 Client ID                   | `xxxx.apps.googleusercontent.com`              | [Chrome Web Store API Setup](#1-chrome-web-store-api-setup) |
 | `CHROME_CLIENT_SECRET` | OAuth 2.0 Client Secret               | `GOCSPX-xxxx`                                  | [Chrome Web Store API Setup](#1-chrome-web-store-api-setup) |
 | `CHROME_REFRESH_TOKEN` | OAuth 2.0 Refresh Token               | `1//0xxxx`                                     | [Chrome Web Store API Setup](#1-chrome-web-store-api-setup) |

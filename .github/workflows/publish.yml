@@ -24,6 +24,9 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
 
+      - name: Clean existing zip files
+        run: rm -f *.zip
+
       - name: Package Extension Zips
         run: bun build.js --keep-temp
 
